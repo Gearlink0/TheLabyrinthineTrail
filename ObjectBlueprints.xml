@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+
+  <object Name="LABYRINTHINETRAIL_FindingFork" Inherits="Item">
+    <part Name="Render" DisplayName="finding fork" Tile="items/Fork.png" ColorString="&amp;y" DetailColor="Y" />
+    <part Name="Description" Short="Silver antennae sprout from a square head. It beeps with wistful want." />
+    <part Name="Metal" />
+    <part Name="Physics" Category="Quest Items" />
+    <part Name="Examiner" Unknown="UnknownSmallTrinket" Alternate="UnknownSmallTrinket" Complexity="1" Understanding="1" />
+    <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
+    <part Name="EnergyCellSocket" SlotType="EnergyCell" />
+    <part Name="LABYRINTHINETRAIL_FindingFork" ChargeUse="100" />
+    <tag Name="QuestItem" />
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+    <tag Name="NoSparkingQuest" />
+    <property Name="WontSell" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_SubdimensionalCask" Inherits="Chest">
+    <part Name="Render" DisplayName="black cask" Tile="items/SubdimensionalCask.png" ColorString="&amp;K" DetailColor="m" />
+    <part Name="Description" Short="Tumbling between the dimensional membranes has worn iridescent distress onto the lightless metal cylinder" />
+    <part Name="Physics" Weight="1" />
+    <inventoryobject Blueprint="Chem Cell" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_TreasureHunterCorpse" Inherits="Corpse">
+    <part Name="Render" RenderLayer="6" DisplayName="{{Y|human remains}}" ColorString="&amp;Y" DetailColor="y" TileColor="&amp;Y" />
+    <tag Name="NoSparkingQuest" />
+    <!-- <part Name="ExileCorpseLoot" /> -->
+    <part Name="LABYRINTHINETRAIL_ExileCorpseLoot" />
+    <!-- <inventoryobject Blueprint="LABYRINTHINETRAIL_FindingFork" Number="1" /> -->
+    <part Name="Description" Short="A skeletal shape protrudes from the sludge." />
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+    <tag Name="Gender" Value="plural" />
+    <tag Name="NoClear" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_RivalsDisguise" Inherits="Grassy Yurtmat">
+    <part Name="ModDisguise" DisguiseBlueprint="Beetlebum" />
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+    <property Name="Role" Value="Uncommon" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_RivalHunter" Inherits="Graverobber">
+    <inventoryobject Blueprint="LABYRINTHINETRAIL_RivalsDisguise" />
+  </object>
+
+</objects>

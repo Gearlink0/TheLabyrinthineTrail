@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<populations>
+
+	<population Name="GolgothaCloacaZoneGlobals" Load="Merge">
+		<object Blueprint="LABYRINTHINETRAIL_TreasureHunterCorpse" />
+  </population>
+
+</populations>

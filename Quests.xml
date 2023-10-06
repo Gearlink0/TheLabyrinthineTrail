@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<quests>
+	<quest Name="Follow the finding fork"
+  	Accomplishment="You found the secretive cache the finding fork pointed to."
+    Hagiograph="=name= devised a means to track down the hidden spaces in the creases between dimensions."
+    HagiographCategory="CreatesSomething">
+
+    <step Name="Follow the finding fork" XP="1000">
+      <text>Follow the finding fork and see where it leads.</text>
+    </step>
+  </quest>
+</quests>
