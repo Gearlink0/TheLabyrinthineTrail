@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using XRL.Core;
 using XRL.Language;
+using XRL.Rules;
 using XRL.UI;
 using XRL.World;
 
@@ -12,6 +13,10 @@ namespace XRL.World.Parts
     private List<string> MusicNoteTextStrings = new List<string>{ "&R!", "&r!", "&R\r", "&r\u000E" };
 
 		public string Sound = "completion";
+    public int TargetZoneX = -1;
+    public int TargetZoneY = -1;
+    public int TargetCellX = -1;
+    public int TargetCellY = -1;
     public string TargetZone = "";
     public Cell TargetCell = null;
     public string RewardBlueprint = "LABYRINTHINETRAIL_SubdimensionalCask";
@@ -36,7 +41,17 @@ namespace XRL.World.Parts
 
     public override bool WantEvent(int ID, int cascade)
     {
-      return base.WantEvent(ID, cascade) || ID == GetInventoryActionsEvent.ID || ID == InventoryActionEvent.ID;
+      return base.WantEvent(ID, cascade) || ID == GetInventoryActionsEvent.ID || ID == InventoryActionEvent.ID || ID == ObjectCreatedEvent.ID;
+    }
+
+    public override bool HandleEvent(ObjectCreatedEvent  E)
+    {
+      if( this.TargetZone.IsNullOrEmpty() )
+        this.TargetZone = this.GenerateTargetZone();
+
+      if( this.TargetCell == null )
+        this.TargetCell = GenerateTargetCell();
+      return base.HandleEvent(E);
     }
 
 		public override bool HandleEvent(GetInventoryActionsEvent E)
@@ -92,12 +107,6 @@ namespace XRL.World.Parts
 		public bool AttemptPing(IEvent FromEvent = null)
 		{
       XRL.Messages.MessageQueue.AddPlayerMessage( this.TargetZone );
-      if( this.TargetZone.IsNullOrEmpty() )
-        this.TargetZone = this.GenerateTargetZone();
-
-      if( this.TargetCell == null && !this.TargetZone.IsNullOrEmpty() ) {
-        this.TargetCell = this.GenerateTargetCell();
-      }
 
 			int num = this.ParentObject.QueryCharge();
 			ActivePartStatus activePartStatus = this.GetActivePartStatus(true);
@@ -158,14 +167,30 @@ namespace XRL.World.Parts
 
     public string GenerateTargetZone()
     {
-      // TODO: Randomly generate target zone
-      return Zone.XYToID(this.World, 32, 32, 10);
+      if (TargetZoneX >= 0 && TargetZoneY >= 0)
+        return Zone.XYToID(this.World, TargetZoneX, TargetZoneY, 10);
+      else {
+        // TODO: Make this configurable and find a better way to get the dimensions
+        // of the world
+        int RandX = Stat.Random( 0, 80 * 3 );
+        int RandY = Stat.Random( 0, 25 * 3 );
+
+        XRL.Messages.MessageQueue.AddPlayerMessage( RandX.ToString() );
+        XRL.Messages.MessageQueue.AddPlayerMessage( RandY.ToString() );
+
+        return Zone.XYToID(
+          this.World,
+          RandX,
+          RandY,
+          10
+        );
+      }
     }
 
     public Cell GenerateTargetCell()
     {
-      if( this.TargetZone.IsNullOrEmpty() )
-        this.TargetZone = this.GenerateTargetZone();
+      if (TargetCellX >= 0 && TargetCellY >= 0)
+        return The.ZoneManager.GetZone(this.TargetZone).GetCell(TargetCellX, TargetCellY);
       return The.ZoneManager.GetZone(this.TargetZone).GetEmptyReachableCells().RemoveRandomElement<Cell>();
     }
 
