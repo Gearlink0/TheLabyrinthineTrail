@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using XRL.Core;
 using XRL.Language;
@@ -113,9 +114,43 @@ namespace XRL.World.Parts
 			if (activePartStatus == ActivePartStatus.Operational)
 			{
 				XRL.Messages.MessageQueue.AddPlayerMessage( "Ping with finding fork" );
-        Cell currentCell = this.GetActivePartFirstSubject().CurrentCell;
-        // TODO: Check if player is on world map. If they are, need to compare
-        // zones not cells
+        GameObject Subject = this.GetActivePartFirstSubject();
+        Cell currentCell = Subject.CurrentCell;
+        if ( currentCell.ParentZone.IsWorldMap() )
+        {
+          // If the player is on the world map, get their last location on the surface
+          string stringGameState = XRLCore.Core.Game.GetStringGameState("LastLocationOnSurface");
+          if (!stringGameState.IsNullOrEmpty())
+            currentCell = Cell.FromAddress(stringGameState);
+          // If that isn't available, calculate the cell the player would be sent
+          // to if they went down
+          else
+          {
+            int x = currentCell.X;
+            int y = currentCell.Y;
+            int X = 1;
+            int Y = 1;
+
+            string ZoneID = this.World + "." + x.ToString() + "." + y.ToString();
+            foreach (CellBlueprint cellBlueprint in The.ZoneManager.GetCellBlueprints(ZoneID))
+            {
+              if (!cellBlueprint.LandingZone.IsNullOrEmpty())
+              {
+                try
+                {
+                  string[] strArray = cellBlueprint.LandingZone.Split(',', StringSplitOptions.None);
+                  X = Convert.ToInt32(strArray[0]);
+                  Y = Convert.ToInt32(strArray[1]);
+                  break;
+                }
+                catch {}
+              }
+            }
+            Zone PullDownZone = The.ZoneManager.GetZone(this.World, x, y, X, Y, 10);
+            currentCell = PullDownZone.GetPullDownLocation( Subject );
+          }
+        }
+
         int currentDist = currentCell.PathDistanceTo( this.TargetCell );
         XRL.Messages.MessageQueue.AddPlayerMessage( currentDist.ToString() );
 
