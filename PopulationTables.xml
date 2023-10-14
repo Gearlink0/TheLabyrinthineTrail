@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <populations>
-
+	
 	<population Name="GolgothaCloacaZoneGlobals" Load="Merge">
 		<object Blueprint="LABYRINTHINETRAIL_TreasureHunterCorpse" />
+	</population>
+
+	<population Name="LABYRINTHINETRAIL_BasicCaskLoot">
+    <table Name="Artifact {zonetier}R" Number="1-2" />
   </population>
 
 </populations>

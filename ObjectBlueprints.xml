@@ -5,33 +5,60 @@
     <part Name="Render" DisplayName="finding fork" Tile="items/Fork.png" ColorString="&amp;y" DetailColor="Y" />
     <part Name="Description" Short="Silver antennae sprout from a square head. It beeps with wistful want." />
     <part Name="Metal" />
-    <part Name="Physics" Category="Quest Items" />
     <part Name="Examiner" Unknown="UnknownSmallTrinket" Alternate="UnknownSmallTrinket" Complexity="1" Understanding="1" />
-    <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
     <part Name="EnergyCellSocket" SlotType="EnergyCell" />
     <part Name="LABYRINTHINETRAIL_FindingFork" ChargeUse="100" />
-    <tag Name="QuestItem" />
     <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
     <tag Name="NoSparkingQuest" />
     <property Name="WontSell" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_FirstQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
+    <part Name="Physics" Category="Quest Items" />
+    <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
+    <part Name="LABYRINTHINETRAIL_FindingFork" RewardBlueprint="LABYRINTHINETRAIL_FirstQuestCask" />
+    <tag Name="QuestItem" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_SecondQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
+    <part Name="Physics" Category="Quest Items" />
+    <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
+    <part Name="LABYRINTHINETRAIL_FindingFork" RewardBlueprint="LABYRINTHINETRAIL_SecondQuestCask" />
+    <tag Name="QuestItem" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_FinalQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
+    <part Name="Physics" Category="Quest Items" />
+    <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
+    <part Name="LABYRINTHINETRAIL_FindingFork" RewardBlueprint="LABYRINTHINETRAIL_FinalQuestCask" />
+    <tag Name="QuestItem" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_SubdimensionalCask" Inherits="Chest">
     <part Name="Render" DisplayName="black cask" Tile="items/SubdimensionalCask.png" ColorString="&amp;K" DetailColor="m" />
     <part Name="Description" Short="Tumbling between the dimensional membranes has worn iridescent distress onto the lightless metal cylinder" />
     <part Name="Physics" Weight="1" />
-    <inventoryobject Blueprint="Chem Cell" />
+    <tag Name="InventoryPopulationTable" Value="LABYRINTHINETRAIL_BasicCaskLoot" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_FirstQuestCask" Inherits="LABYRINTHINETRAIL_SubdimensionalCask">
+    <inventoryobject Blueprint="LABYRINTHINETRAIL_SecondQuestFork" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_SecondQuestCask" Inherits="LABYRINTHINETRAIL_SubdimensionalCask">
+    <inventoryobject Blueprint="LABYRINTHINETRAIL_FinalQuestFork" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_FinalQuestCask" Inherits="LABYRINTHINETRAIL_SubdimensionalCask">
+    <!-- TODO: Juicy sultan loot -->
   </object>
 
   <object Name="LABYRINTHINETRAIL_TreasureHunterCorpse" Inherits="Corpse">
     <part Name="Render" RenderLayer="6" DisplayName="{{Y|human remains}}" ColorString="&amp;Y" DetailColor="y" TileColor="&amp;Y" />
     <tag Name="NoSparkingQuest" />
-    <!-- <part Name="ExileCorpseLoot" /> -->
     <part Name="LABYRINTHINETRAIL_ExileCorpseLoot" />
-    <!-- <inventoryobject Blueprint="LABYRINTHINETRAIL_FindingFork" Number="1" /> -->
     <part Name="Description" Short="A skeletal shape protrudes from the sludge." />
     <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
-    <tag Name="Gender" Value="plural" />
     <tag Name="NoClear" />
   </object>
 
