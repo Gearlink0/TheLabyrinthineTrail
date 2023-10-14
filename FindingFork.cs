@@ -22,6 +22,15 @@ namespace XRL.World.Parts
     public Cell TargetCell = null;
     public string RewardBlueprint = "LABYRINTHINETRAIL_SubdimensionalCask";
 
+    public string ActivatedAbilityName = "Ping";
+    public string ActivatedAbilityCommandNamePrefix = "ActivateFindingFork";
+    [FieldSaveVersion(236)]
+    public string ActivatedAbilityClass;
+    [FieldSaveVersion(236)]
+    public string ActivatedAbilityIcon = "û";
+    [FieldSaveVersion(236)]
+    public Guid ActivatedAbilityID;
+
     public int LastDist = -1;
 
     public int Coldest = 25000;
@@ -42,7 +51,13 @@ namespace XRL.World.Parts
 
     public override bool WantEvent(int ID, int cascade)
     {
-      return base.WantEvent(ID, cascade) || ID == GetInventoryActionsEvent.ID || ID == InventoryActionEvent.ID || ID == ObjectCreatedEvent.ID;
+      return base.WantEvent(ID, cascade)
+      || ID == ObjectCreatedEvent.ID
+      || ID == EquippedEvent.ID
+      || ID == UnequippedEvent.ID
+      || ID == CommandEvent.ID
+      || ID == GetInventoryActionsEvent.ID
+      || ID == InventoryActionEvent.ID;
     }
 
     public override bool HandleEvent(ObjectCreatedEvent  E)
@@ -52,6 +67,35 @@ namespace XRL.World.Parts
 
       if( this.TargetCell == null )
         this.TargetCell = GenerateTargetCell();
+      return base.HandleEvent(E);
+    }
+
+    public override bool HandleEvent(CommandEvent E)
+    {
+      if (
+        E.Command == this.GetActivatedAbilityCommandName()
+        && E.Actor == this.GetActivePartFirstSubject()
+        && AttemptPing( E )
+      )
+      {
+        E.Actor.UseEnergy(1000, "Item Finding Fork");
+				if (!string.IsNullOrEmpty(this.Sound))
+          E.Actor.PlayWorldSound(this.Sound);
+      }
+      return base.HandleEvent(E);
+    }
+
+    public override bool HandleEvent(EquippedEvent E)
+    {
+      E.Actor.RegisterPartEvent((IPart) this, this.GetActivatedAbilityCommandName());
+      this.SetUpActivatedAbility(E.Actor);
+      return base.HandleEvent(E);
+    }
+
+    public override bool HandleEvent(UnequippedEvent E)
+    {
+      E.Actor.UnregisterPartEvent((IPart) this, this.GetActivatedAbilityCommandName());
+      E.Actor.RemoveActivatedAbility(ref this.ActivatedAbilityID);
       return base.HandleEvent(E);
     }
 
@@ -66,8 +110,8 @@ namespace XRL.World.Parts
 		{
 			if (E.Command == "LabyrinthineTrail_ActivateFindingFork" && AttemptPing( E ) )
       {
+        E.RequestInterfaceExit();
 				E.Actor.UseEnergy(1000, "Item Finding Fork");
-				E.RequestInterfaceExit();
 				if (!string.IsNullOrEmpty(this.Sound))
           E.Actor.PlayWorldSound(this.Sound);
       }
@@ -292,5 +336,35 @@ namespace XRL.World.Parts
         }
       }
     }
+
+    public void SetUpActivatedAbility(GameObject Who = null)
+    {
+      if (Who == null)
+        Who = this.GetActivePartFirstSubject();
+      if (Who == null)
+        return;
+      if (this.ActivatedAbilityID == Guid.Empty)
+        this.ActivatedAbilityID = Who.AddActivatedAbility(
+          this.ActivatedAbilityName,
+          this.GetActivatedAbilityCommandName(),
+          this.ActivatedAbilityClass ?? (Who == this.ParentObject ? "Maneuvers" : "Items"),
+          Icon: this.ActivatedAbilityIcon
+        );
+      else
+        this.SyncActivatedAbilityName(Who);
+    }
+
+    public void SyncActivatedAbilityName(GameObject Who = null)
+    {
+      if (this.ActivatedAbilityID == Guid.Empty)
+        return;
+      if (Who == null)
+        Who = this.GetActivePartFirstSubject();
+      if (Who == null)
+        return;
+      Who.SetActivatedAbilityDisplayName(this.ActivatedAbilityID, this.ActivatedAbilityName);
+    }
+
+    public string GetActivatedAbilityCommandName() => this.ActivatedAbilityCommandNamePrefix + this.ParentObject.id;
   }
 }

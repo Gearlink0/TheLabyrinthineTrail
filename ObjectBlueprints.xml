@@ -5,9 +5,11 @@
     <part Name="Render" DisplayName="finding fork" Tile="items/Fork.png" ColorString="&amp;y" DetailColor="Y" />
     <part Name="Description" Short="Silver antennae sprout from a square head. It beeps with wistful want." />
     <part Name="Metal" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="3" BaseDamage="1d4" Skill="ShortBlades" />
     <part Name="Examiner" Unknown="UnknownSmallTrinket" Alternate="UnknownSmallTrinket" Complexity="1" Understanding="1" />
     <part Name="EnergyCellSocket" SlotType="EnergyCell" />
     <part Name="LABYRINTHINETRAIL_FindingFork" ChargeUse="100" />
+    <tag Name="MeleeWeapon" Value="1" />
     <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
     <tag Name="NoSparkingQuest" />
     <property Name="WontSell" />
