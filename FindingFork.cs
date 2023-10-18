@@ -14,6 +14,7 @@ namespace XRL.World.Parts
     private List<string> MusicNoteTextStrings = new List<string>{ "&R!", "&r!", "&R\r", "&r\u000E" };
 
 		public string Sound = "completion";
+    public string TargetZoneState = "";
     public int TargetZoneX = -1;
     public int TargetZoneY = -1;
     public int TargetCellX = -1;
@@ -246,7 +247,9 @@ namespace XRL.World.Parts
 
     public string GenerateTargetZone()
     {
-      if (TargetZoneX >= 0 && TargetZoneY >= 0)
+      if ( !this.TargetZoneState.IsNullOrEmpty() )
+        return XRLCore.Core.Game.GetStringGameState( this.TargetZoneState );
+      else if (TargetZoneX >= 0 && TargetZoneY >= 0)
         return Zone.XYToID(this.World, TargetZoneX, TargetZoneY, 10);
       else {
         // TODO: Make this configurable and find a better way to get the dimensions

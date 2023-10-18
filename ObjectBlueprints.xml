@@ -18,21 +18,30 @@
   <object Name="LABYRINTHINETRAIL_FirstQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
     <part Name="Physics" Category="Quest Items" />
     <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
-    <part Name="LABYRINTHINETRAIL_FindingFork" RewardBlueprint="LABYRINTHINETRAIL_FirstQuestCask" />
+    <part Name="LABYRINTHINETRAIL_FindingFork"
+      TargetZoneState="LABYRINTHINETRAIL_FirstQuest_ZoneID"
+      RewardBlueprint="LABYRINTHINETRAIL_FirstQuestCask"
+    />
     <tag Name="QuestItem" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_SecondQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
     <part Name="Physics" Category="Quest Items" />
     <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
-    <part Name="LABYRINTHINETRAIL_FindingFork" RewardBlueprint="LABYRINTHINETRAIL_SecondQuestCask" />
+    <part Name="LABYRINTHINETRAIL_FindingFork"
+      TargetZoneState="LABYRINTHINETRAIL_SecondQuest_ZoneID"
+      RewardBlueprint="LABYRINTHINETRAIL_SecondQuestCask"
+    />
     <tag Name="QuestItem" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_FinalQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
     <part Name="Physics" Category="Quest Items" />
     <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
-    <part Name="LABYRINTHINETRAIL_FindingFork" RewardBlueprint="LABYRINTHINETRAIL_FinalQuestCask" />
+    <part Name="LABYRINTHINETRAIL_FindingFork"
+      TargetZoneState="LABYRINTHINETRAIL_FinalQuest_ZoneID"
+      RewardBlueprint="LABYRINTHINETRAIL_FinalQuestCask"
+    />
     <tag Name="QuestItem" />
   </object>
 
