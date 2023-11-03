@@ -79,8 +79,27 @@
     <property Name="Role" Value="Uncommon" />
   </object>
 
-  <object Name="LABYRINTHINETRAIL_RivalHunter" Inherits="Graverobber">
-    <inventoryobject Blueprint="LABYRINTHINETRAIL_RivalsDisguise" />
+  <object Name="LABYRINTHINETRAIL_BaseRivalHunter" Inherits="NPC">
+    <part Name="Render" DisplayName="forkseeker" Tile="Creatures/caste_flipped_14.bmp" RenderString="h" ColorString="&amp;y" DetailColor="c" />
+    <part Name="ConversationScript" ConversationID="Arconaut" />
+    <part Name="Brain" Factions="Prey-100" />
+    <stat Name="Agility" Boost="1" />
+    <part Name="LABYRINTHINETRAIL_RivalCritical" />
+    <part Name="Description" Short="Well traveled dust covers =pronouns.possessive= cloak and hat. =pronouns.Possessive= ears are tuned to the frequencies of finding. =pronouns.Possessive= nerves coil around pistol grips." />
+    <property Name="Role" Value="Skirmisher" />
+    <skill Name="Acrobatics_Dodge" />
+    <skill Name="Tinkering" />
+    <skill Name="Tinkering_Scavenger" />
+    <skill Name="ShortBlades_Expertise" />
+    <skill Name="Pistol" />
+    <skill Name="Pistol_Akimbo" />
+    <skill Name="Pistol_DisarmingShot" />
+    <skill Name="Tactics_Throwing" />
+    <inventoryobject Blueprint="Leather Cloak" />
+    <inventoryobject Blueprint="Wide-brimmed Hat" />
+    <inventoryobject Blueprint="Semi-Automatic Pistol" Number="2"/>
+    <inventoryobject Blueprint="Lead Slug" Number="50-200" />
+    <part Name="Rummager" />
   </object>
 
 </objects>
