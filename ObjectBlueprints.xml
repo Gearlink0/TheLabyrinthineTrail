@@ -49,6 +49,11 @@
     <part Name="Render" DisplayName="black cask" Tile="items/SubdimensionalCask.png" ColorString="&amp;K" DetailColor="m" />
     <part Name="Description" Short="Tumbling between the dimensional membranes has worn iridescent distress onto the lightless metal cylinder" />
     <part Name="Physics" Weight="1" />
+    <part
+      Name="AnimatedMaterialGeneric"
+      AnimationLength="250"
+      DetailColorAnimationFrames="0=M,50=m,100=y,150=Y,200=O"
+    />
     <tag Name="InventoryPopulationTable" Value="LABYRINTHINETRAIL_BasicCaskLoot" />
   </object>
 
