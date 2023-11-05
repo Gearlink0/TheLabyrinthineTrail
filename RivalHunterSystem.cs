@@ -7,6 +7,7 @@ using XRL.World.AI;
 using XRL.World.AI.GoalHandlers;
 using XRL.World.Parts;
 using XRL.World.Parts.Mutation;
+using LabyrinthineTrailExtensions;
 
 namespace XRL
 {
@@ -25,11 +26,12 @@ namespace XRL
     public void CheckHunters(Zone zone)
     {
       XRL.Messages.MessageQueue.AddPlayerMessage( "CheckHunters ran" );
-      // TODO: Fire this when the player pings with the fork
       if (zone.IsWorldMap())
-        // TOOD: Pull the player down from the world map
         return;
       GameObject player = The.Player;
+      // Make sure the player actually has a finding fork for the rivals to track
+      if ( !player.HasCarriedItemWithTag("LABYRINTHINETRAIL_AttractsRivalHunters") )
+        return;
       if (this.Visited.ContainsKey(zone.ZoneID))
         return;
       this.Visited.Add(zone.ZoneID, true);

@@ -12,6 +12,7 @@
     <tag Name="MeleeWeapon" Value="1" />
     <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
     <tag Name="NoSparkingQuest" />
+    <tag Name="LABYRINTHINETRAIL_AttractsRivalHunters" />
     <property Name="WontSell" />
   </object>
 
