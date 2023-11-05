@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<embarkmodules>
+
+	<module Class="XRL.CharacterBuilds.Qud.QudGamemodeModule">
+		<modes>
+			<mode ID="Classic">
+				<gamesystem Class="XRL.LABYRINTHINETRAIL_RivalHunterSystem"/>
+			</mode>
+			<mode ID="Roleplay">
+				<gamesystem Class="XRL.LABYRINTHINETRAIL_RivalHunterSystem"/>
+			</mode>
+			<mode ID="Wander">
+				<gamesystem Class="XRL.LABYRINTHINETRAIL_RivalHunterSystem"/>
+      </mode>
+      <mode ID="Daily">
+				<gamesystem Class="XRL.LABYRINTHINETRAIL_RivalHunterSystem"/>
+      </mode>
+		</modes>
+	</module>
+
+</embarkmodules>

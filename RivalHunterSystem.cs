@@ -1,0 +1,125 @@
+using System;
+using System.Collections.Generic;
+using XRL.Rules;
+using XRL.UI;
+using XRL.World;
+using XRL.World.AI;
+using XRL.World.AI.GoalHandlers;
+using XRL.World.Parts;
+using XRL.World.Parts.Mutation;
+
+namespace XRL
+{
+  [Serializable]
+  public class LABYRINTHINETRAIL_RivalHunterSystem : IGameSystem
+  {
+    [NonSerialized]
+    public Dictionary<string, bool> Visited = new Dictionary<string, bool>();
+
+    public override void ZoneActivated(Zone zone) => this.CheckHunters(zone);
+
+    public override void LoadGame(SerializationReader Reader) => this.Visited = Reader.ReadDictionary<string, bool>();
+
+    public override void SaveGame(SerializationWriter Writer) => Writer.Write<string, bool>(this.Visited);
+
+    public void CheckHunters(Zone zone)
+    {
+      XRL.Messages.MessageQueue.AddPlayerMessage( "CheckHunters ran" );
+      // TODO: Fire this when the player pings with the fork
+      if (zone.IsWorldMap())
+        // TOOD: Pull the player down from the world map
+        return;
+      GameObject player = The.Player;
+      if (this.Visited.ContainsKey(zone.ZoneID))
+        return;
+      this.Visited.Add(zone.ZoneID, true);
+      int chance;
+      if (The.ZoneManager.TryGetZoneProperty<int>(zone.ZoneID, "AmbushChance", out chance) && !chance.in100())
+        return;
+      int numHunters = LABYRINTHINETRAIL_RivalHunterSystem.GetNumHunters(player.Statistics["Level"].Value);
+      if (numHunters <= 0)
+        return;
+      if (90.in100())
+        LABYRINTHINETRAIL_RivalHunterSystem.CreateHunters(numHunters, zone);
+    }
+
+    public static void CreateHunters(int numHunters, Zone zone)
+    {
+      bool placedHunters = false;
+      if (The.Game.PlayerReputation.get("Prey") >= 250)
+        return;
+      GameObject player = The.Player;
+      for (int index = 1; index <= numHunters; ++index)
+      {
+        GameObject gameObject = GameObject.create("LABYRINTHINETRAIL_BaseRivalHunter");
+        gameObject.pBrain.Hostile = true;
+        gameObject.pBrain.Hibernating = false;
+        gameObject.pBrain.SetFeeling(player, -100);
+        gameObject.pBrain.PushGoal((GoalHandler) new Kill(player));
+
+        gameObject.AwardXP(player.Stat("XP"));
+
+        // Have the rival invest all their AP into Agility
+        if (gameObject.Statistics.ContainsKey("AP"))
+          gameObject.Statistics["Agility"].BaseValue += gameObject.Statistics["AP"].BaseValue;
+          gameObject.Statistics["AP"].BaseValue = 0;
+
+        // Have the rival start with two random mutations that cost more than 1 point
+        int numMutations = 2;
+        int levelPerMutation = 1;
+        // Evenly distribute the rival's MP points
+        if (gameObject.Statistics.ContainsKey("MP"))
+          levelPerMutation = gameObject.Statistics["MP"].BaseValue / numMutations;
+          gameObject.Statistics["MP"].BaseValue = 0;
+        for (int addMutIndex = 0; addMutIndex < numMutations; ++addMutIndex)
+        {
+          List<MutationEntry> mutationList = new List<MutationEntry>((IEnumerable<MutationEntry>) gameObject.GetPart<Mutations>().GetMutatePool());
+          mutationList.ShuffleInPlace<MutationEntry>();
+          MutationEntry mutationToAdd = (MutationEntry) null;
+          foreach (MutationEntry mutation in mutationList)
+          {
+            if (mutation.Category != null && !gameObject.HasPart(mutation.Class) && mutation.Cost > 1)
+            {
+              mutationToAdd = mutation;
+              break;
+            }
+          }
+          if (mutationToAdd != null)
+            (gameObject.GetPart("Mutations") as Mutations).AddMutation(mutationToAdd.Class, levelPerMutation);
+        }
+
+        placedHunters |= LABYRINTHINETRAIL_RivalHunterSystem.PlaceHunter(zone, gameObject);
+      }
+      if( placedHunters )
+        Popup.Show("{{c|You hear the sharp ping of another fork. Someone else is here.}}");
+    }
+
+    public static bool PlaceHunter( Zone Zone, XRL.World.GameObject Hunter )
+    {
+      Cell cellToPlace = null;
+      for (int index = 0; index < 100 && cellToPlace == null; ++index)
+      {
+        int x = Stat.Random(0, Zone.Width - 1);
+        int y = Stat.Random(0, Zone.Height - 1);
+        Cell cell = Zone.GetCell(x, y);
+        if (cell.IsSpawnable() && cell.GetNavigationWeightFor(Hunter) < 30)
+          cellToPlace = cell;
+      }
+      if (cellToPlace == null)
+      {
+        List<Cell> passableCells = Zone.GetPassableCells(Hunter);
+        if (passableCells.IsNullOrEmpty<Cell>())
+          return false;
+        cellToPlace = passableCells.GetRandomElement<Cell>((System.Random) null);
+      }
+      cellToPlace.AddObject(Hunter);
+      Hunter.MakeActive();
+      return true;
+    }
+
+    public static int GetNumHunters(int level)
+    {
+      return ( level - 10 ) / 5;
+    }
+	}
+}
