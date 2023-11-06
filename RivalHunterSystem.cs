@@ -61,34 +61,7 @@ namespace XRL
 
         gameObject.AwardXP(player.Stat("XP"));
 
-        // Have the rival invest all their AP into Agility
-        if (gameObject.Statistics.ContainsKey("AP"))
-          gameObject.Statistics["Agility"].BaseValue += gameObject.Statistics["AP"].BaseValue;
-          gameObject.Statistics["AP"].BaseValue = 0;
-
-        // Have the rival start with two random mutations that cost more than 1 point
-        int numMutations = 2;
-        int levelPerMutation = 1;
-        // Evenly distribute the rival's MP points
-        if (gameObject.Statistics.ContainsKey("MP"))
-          levelPerMutation = gameObject.Statistics["MP"].BaseValue / numMutations;
-          gameObject.Statistics["MP"].BaseValue = 0;
-        for (int addMutIndex = 0; addMutIndex < numMutations; ++addMutIndex)
-        {
-          List<MutationEntry> mutationList = new List<MutationEntry>((IEnumerable<MutationEntry>) gameObject.GetPart<Mutations>().GetMutatePool());
-          mutationList.ShuffleInPlace<MutationEntry>();
-          MutationEntry mutationToAdd = (MutationEntry) null;
-          foreach (MutationEntry mutation in mutationList)
-          {
-            if (mutation.Category != null && !gameObject.HasPart(mutation.Class) && mutation.Cost > 1)
-            {
-              mutationToAdd = mutation;
-              break;
-            }
-          }
-          if (mutationToAdd != null)
-            (gameObject.GetPart("Mutations") as Mutations).AddMutation(mutationToAdd.Class, levelPerMutation);
-        }
+        LABYRINTHINETRAIL_RivalHunterSystem.InvestHunterAPMP( gameObject );
 
         placedHunters |= LABYRINTHINETRAIL_RivalHunterSystem.PlaceHunter(zone, gameObject);
       }
@@ -122,6 +95,36 @@ namespace XRL
     public static int GetNumHunters(int level)
     {
       return ( level - 10 ) / 5;
+    }
+
+    public static void InvestHunterAPMP( GameObject rivalHunter, int numMutations=2 )
+    {
+      // Have the rival invest all their AP into Agility
+      if (rivalHunter.Statistics.ContainsKey("AP"))
+        rivalHunter.Statistics["Agility"].BaseValue += rivalHunter.Statistics["AP"].BaseValue;
+        rivalHunter.Statistics["AP"].BaseValue = 0;
+      // Have the rival start with two random mutations that cost more than 1 point
+      int levelPerMutation = 1;
+      // Evenly distribute the rival's MP points
+      if (rivalHunter.Statistics.ContainsKey("MP"))
+        levelPerMutation = rivalHunter.Statistics["MP"].BaseValue / numMutations;
+        rivalHunter.Statistics["MP"].BaseValue = 0;
+      for (int addMutIndex = 0; addMutIndex < numMutations; ++addMutIndex)
+      {
+        List<MutationEntry> mutationList = new List<MutationEntry>((IEnumerable<MutationEntry>) rivalHunter.GetPart<Mutations>().GetMutatePool());
+        mutationList.ShuffleInPlace<MutationEntry>();
+        MutationEntry mutationToAdd = (MutationEntry) null;
+        foreach (MutationEntry mutation in mutationList)
+        {
+          if (mutation.Category != null && !rivalHunter.HasPart(mutation.Class) && mutation.Cost > 1)
+          {
+            mutationToAdd = mutation;
+            break;
+          }
+        }
+        if (mutationToAdd != null)
+          (rivalHunter.GetPart("Mutations") as Mutations).AddMutation(mutationToAdd.Class, levelPerMutation);
+      }
     }
 	}
 }
