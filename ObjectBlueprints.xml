@@ -31,6 +31,7 @@
     <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
     <part Name="LABYRINTHINETRAIL_FindingFork"
       TargetZoneState="LABYRINTHINETRAIL_SecondQuest_ZoneID"
+      TargetCellState="LABYRINTHINETRAIL_SecondQuest_CellAddress"
       RewardBlueprint="LABYRINTHINETRAIL_SecondQuestCask"
     />
     <tag Name="QuestItem" />

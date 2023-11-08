@@ -17,6 +17,7 @@ namespace XRL.World.Parts
 
 		public string Sound = "completion";
     public string TargetZoneState = "";
+    public string TargetCellState = "";
     public int TargetZoneX = -1;
     public int TargetZoneY = -1;
     public int TargetCellX = -1;
@@ -282,7 +283,9 @@ namespace XRL.World.Parts
 
     public Cell GenerateTargetCell()
     {
-      if (TargetCellX >= 0 && TargetCellY >= 0)
+      if ( !this.TargetZoneState.IsNullOrEmpty() )
+        return Cell.FromAddress( XRLCore.Core.Game.GetStringGameState( this.TargetCellState ) );
+      else if (TargetCellX >= 0 && TargetCellY >= 0)
         return The.ZoneManager.GetZone(this.TargetZone).GetCell(TargetCellX, TargetCellY);
       return The.ZoneManager.GetZone(this.TargetZone).GetEmptyReachableCells().RemoveRandomElement<Cell>();
     }

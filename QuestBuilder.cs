@@ -29,10 +29,12 @@ namespace XRL.World.WorldBuilders
       location = builder.popMutableLocationOfTerrain("Fungal");
 			zoneID = Zone.XYToID(this.World, location.x, location.y, 10);
       XRLCore.Core.Game.SetStringGameState("LABYRINTHINETRAIL_SecondQuest_ZoneID", zoneID);
+      Cell targetCell = The.ZoneManager.GetZone(zoneID).GetEmptyReachableCells().RemoveRandomElement<Cell>();
+      XRLCore.Core.Game.SetStringGameState("LABYRINTHINETRAIL_SecondQuest_CellAddress", targetCell.GetAddress());
 
       for( int index=0; index<3; index++ )
       {
-        Cell emptyCell = The.ZoneManager.GetZone(zoneID).GetEmptyCells().RemoveRandomElement<Cell>();
+        Cell emptyCell = targetCell.GetEmptyConnectedAdjacentCells( 5 ).RemoveRandomElement<Cell>();
         if( emptyCell == null )
           MetricsManager.LogInfo("No cell found for rival ambush");
         else
