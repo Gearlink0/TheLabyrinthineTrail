@@ -1,12 +1,11 @@
 using Genkit;
 using Qud.API;
+using System.Collections.Generic;
+using XRL;
 using XRL.Core;
 using XRL.World;
 using XRL.World.Parts;
-using XRL.World;
 
-// namespace YourMod.YourNamespace
-// namespace AERONAUTS
 namespace XRL.World.WorldBuilders
 {
   [JoppaWorldBuilderExtension]
@@ -30,6 +29,20 @@ namespace XRL.World.WorldBuilders
       location = builder.popMutableLocationOfTerrain("Fungal");
 			zoneID = Zone.XYToID(this.World, location.x, location.y, 10);
       XRLCore.Core.Game.SetStringGameState("LABYRINTHINETRAIL_SecondQuest_ZoneID", zoneID);
+
+      for( int index=0; index<3; index++ )
+      {
+        Cell emptyCell = The.ZoneManager.GetZone(zoneID).GetEmptyCells().RemoveRandomElement<Cell>();
+        if( emptyCell == null )
+          MetricsManager.LogInfo("No cell found for rival ambush");
+        else
+        {
+          GameObject addedRival = emptyCell.AddObject( "LABYRINTHINETRAIL_AmbushRivalHunter" );
+      		addedRival.AwardXP( Leveler.GetXPForLevel( 20 ) );
+      		LABYRINTHINETRAIL_RivalHunterSystem.InvestHunterAPMP( addedRival );
+        }
+      }
+
       MetricsManager.LogInfo( zoneID );
 
       // Pick a random baroque ruin zone to be the target of the final quest

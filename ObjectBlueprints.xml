@@ -79,12 +79,6 @@
     <tag Name="NoClear" />
   </object>
 
-  <object Name="LABYRINTHINETRAIL_RivalsDisguise" Inherits="Grassy Yurtmat">
-    <part Name="ModDisguise" DisguiseBlueprint="Beetlebum" />
-    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
-    <property Name="Role" Value="Uncommon" />
-  </object>
-
   <object Name="LABYRINTHINETRAIL_BaseRivalHunter" Inherits="NPC">
     <part Name="Render" DisplayName="forkseeker" Tile="Creatures/caste_flipped_14.bmp" RenderString="h" ColorString="&amp;y" DetailColor="c" />
     <part Name="ConversationScript" ConversationID="Arconaut" />
@@ -106,6 +100,16 @@
     <inventoryobject Blueprint="Semi-Automatic Pistol" Number="2"/>
     <inventoryobject Blueprint="Lead Slug" Number="50-200" />
     <part Name="Rummager" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_AmbushRivalHunter" Inherits="LABYRINTHINETRAIL_BaseRivalHunter">
+    <part Name="Brain" Hostile="false" Wanders="true" />
+    <inventoryobject Blueprint="LABYRINTHINETRAIL_RivalsDisguise" />
+  </object>
+  <object Name="LABYRINTHINETRAIL_RivalsDisguise" Inherits="Grassy Yurtmat">
+    <part Name="ModDisguise" DisguiseBlueprint="FungusPuffer1" />
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+    <property Name="Role" Value="Uncommon" />
   </object>
 
 </objects>
