@@ -5,6 +5,8 @@ using XRL.Language;
 using XRL.Rules;
 using XRL.UI;
 using XRL.World;
+using XRL.World.AI;
+using XRL.World.AI.GoalHandlers;
 
 namespace XRL.World.Parts
 {
@@ -214,6 +216,15 @@ namespace XRL.World.Parts
           Popup.Show("The fork's tines probe the air and plunge into an unseen firmness. An object is excised.");
           List<Cell> emptyAdjacentCells = currentCell.GetEmptyAdjacentCells(1, 1);
           emptyAdjacentCells.RemoveRandomElement<Cell>()?.AddObject( this.RewardBlueprint );
+          // Make all rival hunters in the area hostile to the player
+          Predicate<GameObject> pred = item => item.HasTag("LABYRINTHINETRAIL_AttacksForksUsers");
+          foreach ( GameObject rival in currentCell.ParentZone.FindObjects( pred ) )
+          {
+            rival.pBrain.Hostile = true;
+            rival.pBrain.Hibernating = false;
+            rival.pBrain.SetFeeling(The.Player, -100);
+            rival.pBrain.PushGoal((GoalHandler) new Kill(The.Player));
+          }
         }
 
 				return true;

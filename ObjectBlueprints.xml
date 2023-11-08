@@ -100,6 +100,7 @@
     <inventoryobject Blueprint="Semi-Automatic Pistol" Number="2"/>
     <inventoryobject Blueprint="Lead Slug" Number="50-200" />
     <part Name="Rummager" />
+    <tag Name="LABYRINTHINETRAIL_AttacksForksUsers" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_AmbushRivalHunter" Inherits="LABYRINTHINETRAIL_BaseRivalHunter">
