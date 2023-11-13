@@ -120,4 +120,14 @@
     <part Name="LABYRINTHINETRAIL_SubdimensionalVortex" />
   </object>
 
+  <object Name="LABYRINTHINETRAIL_InertWall" Inherits="Burnished Azzurum">
+    <part Name="Render" DisplayName="inert wall" ColorString="&amp;C^k" TileColor="&amp;K" DetailColor="k" />
+    <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_InertDoor" Inherits="Metal Door">
+    <part Name="Render" DisplayName="inert door" ColorString="&amp;C^k" TileColor="&amp;K" DetailColor="k" />
+    <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
+  </object>
+
 </objects>
