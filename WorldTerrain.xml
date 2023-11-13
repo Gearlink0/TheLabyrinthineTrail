@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+	<object Name="LABYRINTHINETRAIL_TerrainHideaway" Inherits="Terrain">
+	  <part Name="Render" DisplayName="Hideaway" />
+    <tag Name="Terrain" Value="Hideaway" />
+    <tag Name="Immutable" />
+	 </object>
+</objects>
