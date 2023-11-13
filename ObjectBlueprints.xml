@@ -114,4 +114,10 @@
     <property Name="Role" Value="Uncommon" />
   </object>
 
+  <object Name="LABYRINTHINETRAIL_SubdimensionalVortex" Inherits="Space-Time Vortex">
+    <removepart Name="SpaceTimeVortex" />
+    <removepart Name="Temporary" />
+    <part Name="LABYRINTHINETRAIL_SubdimensionalVortex" />
+  </object>
+
 </objects>
