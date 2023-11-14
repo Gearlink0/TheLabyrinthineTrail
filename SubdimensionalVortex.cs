@@ -15,6 +15,8 @@ namespace XRL.World.Parts
 
     public String destinationZoneIDState = "LABYRINTHINETRAIL_VortexDest_ZoneID";
 
+    public String repelledByTag = "LABYRINTHINETRAIL_RepelsSubdimensionalVortices";
+
 		public override bool SpaceTimeAnomalyStationary() => true;
 
 		public override bool HandleEvent(EndTurnEvent E)
@@ -30,12 +32,10 @@ namespace XRL.World.Parts
 				this.ParentObject.SystemMoveTo( this.targetCell );
 
 			Cell currentCell = this.ParentObject.CurrentCell;
-      // TODO: Filter adjacentCells so it doesn't contain cells with
-      // SubdimensionalVortices, or objects that repel them
-      // Then return if list is empty
-      // Use predicate?
-			List<Cell> adjacentCells = currentCell.GetAdjacentCells();
-			this.targetCell = adjacentCells.GetRandomElement<Cell>((Random) null);
+      // Filter adjacentCells so it doesn't contain cells with or objects that
+      // repel them
+      Predicate<Cell> pred = cell => cell.GetFirstObjectWithTag( repelledByTag ) == null;
+      this.targetCell = currentCell.GetRandomLocalAdjacentCell(pred);
 		}
 
     public override bool FireEvent(Event E)
@@ -65,7 +65,6 @@ namespace XRL.World.Parts
 
     public void RequireDestinationZone()
     {
-      XRL.Messages.MessageQueue.AddPlayerMessage( "RequireDestinationZone ran" );
       // Choose a destination zone in JoppaWorld isntead of the current world
       if (!this.DestinationZoneID.IsNullOrEmpty())
         return;

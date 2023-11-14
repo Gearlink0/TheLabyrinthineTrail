@@ -118,6 +118,7 @@
     <removepart Name="SpaceTimeVortex" />
     <removepart Name="Temporary" />
     <part Name="LABYRINTHINETRAIL_SubdimensionalVortex" />
+    <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_InertWall" Inherits="Burnished Azzurum">
