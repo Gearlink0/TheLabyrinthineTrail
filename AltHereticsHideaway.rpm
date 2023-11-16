@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Map Width="80" Height="25">
-  <cell X="0" Y="0"></cell>
+  <cell X="0" Y="0">
+    <object Name="LABYRINTHINETRAIL_HideawayPainter"></object>
+  </cell>
   <cell X="1" Y="0"></cell>
   <cell X="2" Y="0"></cell>
   <cell X="3" Y="0"></cell>
@@ -491,16 +493,36 @@
   <cell X="34" Y="5">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="35" Y="5"></cell>
-  <cell X="36" Y="5"></cell>
-  <cell X="37" Y="5"></cell>
-  <cell X="38" Y="5"></cell>
-  <cell X="39" Y="5"></cell>
-  <cell X="40" Y="5"></cell>
-  <cell X="41" Y="5"></cell>
-  <cell X="42" Y="5"></cell>
-  <cell X="43" Y="5"></cell>
-  <cell X="44" Y="5"></cell>
+  <cell X="35" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="36" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="37" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="38" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="41" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="42" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="43" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="44" Y="5">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="45" Y="5">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -582,8 +604,12 @@
   <cell X="33" Y="6">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="34" Y="6"></cell>
-  <cell X="35" Y="6"></cell>
+  <cell X="34" Y="6">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="35" Y="6">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="36" Y="6">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -597,7 +623,8 @@
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="40" Y="6">
-    <object Name="LABYRINTHINETRAIL_SubdimensionalVortex"></object>
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_InertDoor"></object>
   </cell>
   <cell X="41" Y="6">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
@@ -608,8 +635,12 @@
   <cell X="43" Y="6">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="44" Y="6"></cell>
-  <cell X="45" Y="6"></cell>
+  <cell X="44" Y="6">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="45" Y="6">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="46" Y="6">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -687,28 +718,49 @@
   <cell X="32" Y="7">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="7"></cell>
-  <cell X="34" Y="7"></cell>
+  <cell X="33" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="34" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="35" Y="7">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="36" Y="7">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="37" Y="7"></cell>
-  <cell X="38" Y="7"></cell>
-  <cell X="39" Y="7"></cell>
-  <cell X="40" Y="7"></cell>
-  <cell X="41" Y="7"></cell>
-  <cell X="42" Y="7"></cell>
+  <cell X="37" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="38" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_SubdimensionalVortex"></object>
+  </cell>
+  <cell X="40" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="41" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="42" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="43" Y="7">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="44" Y="7">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="45" Y="7"></cell>
-  <cell X="46" Y="7"></cell>
+  <cell X="45" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="46" Y="7">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="7">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -781,15 +833,21 @@
   <cell X="32" Y="8">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="8"></cell>
+  <cell X="33" Y="8">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="34" Y="8">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="35" Y="8">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="36" Y="8"></cell>
-  <cell X="37" Y="8"></cell>
+  <cell X="36" Y="8">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="37" Y="8">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="38" Y="8">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -802,15 +860,21 @@
   <cell X="41" Y="8">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="42" Y="8"></cell>
-  <cell X="43" Y="8"></cell>
+  <cell X="42" Y="8">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="43" Y="8">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="44" Y="8">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="45" Y="8">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="46" Y="8"></cell>
+  <cell X="46" Y="8">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="8">
     <object Name="LABYRINTHINETRAIL_SubdimensionalVortex"></object>
   </cell>
@@ -883,12 +947,18 @@
   <cell X="32" Y="9">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="9"></cell>
+  <cell X="33" Y="9">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="34" Y="9">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="35" Y="9"></cell>
-  <cell X="36" Y="9"></cell>
+  <cell X="35" Y="9">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="36" Y="9">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="37" Y="9">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -897,9 +967,11 @@
   </cell>
   <cell X="39" Y="9">
     <object Name="Eater Hologram"></object>
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
   </cell>
   <cell X="40" Y="9">
     <object Name="Reliquary"></object>
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
   </cell>
   <cell X="41" Y="9">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
@@ -907,13 +979,19 @@
   <cell X="42" Y="9">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="43" Y="9"></cell>
-  <cell X="44" Y="9"></cell>
+  <cell X="43" Y="9">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="44" Y="9">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="45" Y="9">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="46" Y="9"></cell>
+  <cell X="46" Y="9">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="9">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -988,32 +1066,48 @@
   <cell X="32" Y="10">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="10"></cell>
+  <cell X="33" Y="10">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="34" Y="10">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="35" Y="10"></cell>
+  <cell X="35" Y="10">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="36" Y="10">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="37" Y="10">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="38" Y="10"></cell>
-  <cell X="39" Y="10"></cell>
-  <cell X="40" Y="10"></cell>
-  <cell X="41" Y="10"></cell>
+  <cell X="38" Y="10">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="10">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="10">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="41" Y="10">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="42" Y="10">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="43" Y="10">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="44" Y="10"></cell>
+  <cell X="44" Y="10">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="45" Y="10">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="46" Y="10"></cell>
+  <cell X="46" Y="10">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="10">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1088,28 +1182,49 @@
   <cell X="32" Y="11">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="11"></cell>
-  <cell X="34" Y="11">
-    <object Name="LABYRINTHINETRAIL_SubdimensionalVortex"></object>
+  <cell X="33" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
   </cell>
-  <cell X="35" Y="11"></cell>
+  <cell X="34" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_InertDoor"></object>
+  </cell>
+  <cell X="35" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="36" Y="11">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="37" Y="11"></cell>
-  <cell X="38" Y="11"></cell>
-  <cell X="39" Y="11"></cell>
-  <cell X="40" Y="11"></cell>
-  <cell X="41" Y="11"></cell>
-  <cell X="42" Y="11"></cell>
+  <cell X="37" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="38" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="41" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="42" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="43" Y="11">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="44" Y="11"></cell>
+  <cell X="44" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="45" Y="11">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="46" Y="11"></cell>
+  <cell X="46" Y="11">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="11">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1180,28 +1295,48 @@
   <cell X="32" Y="12">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="12"></cell>
+  <cell X="33" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="34" Y="12">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="35" Y="12"></cell>
+  <cell X="35" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="36" Y="12">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="37" Y="12"></cell>
-  <cell X="38" Y="12"></cell>
-  <cell X="39" Y="12"></cell>
-  <cell X="40" Y="12"></cell>
-  <cell X="41" Y="12"></cell>
-  <cell X="42" Y="12"></cell>
+  <cell X="37" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="38" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="41" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="42" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="43" Y="12">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="44" Y="12"></cell>
+  <cell X="44" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="45" Y="12">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="46" Y="12"></cell>
+  <cell X="46" Y="12">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="12">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1274,28 +1409,49 @@
   <cell X="32" Y="13">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="13"></cell>
+  <cell X="33" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="34" Y="13">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="35" Y="13"></cell>
+  <cell X="35" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="36" Y="13">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="37" Y="13"></cell>
-  <cell X="38" Y="13"></cell>
-  <cell X="39" Y="13"></cell>
-  <cell X="40" Y="13"></cell>
-  <cell X="41" Y="13"></cell>
-  <cell X="42" Y="13"></cell>
+  <cell X="37" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="38" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="41" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="42" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="43" Y="13">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="44" Y="13"></cell>
-  <cell X="45" Y="13">
-    <object Name="LABYRINTHINETRAIL_SubdimensionalVortex"></object>
+  <cell X="44" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
   </cell>
-  <cell X="46" Y="13"></cell>
+  <cell X="45" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_InertDoor"></object>
+  </cell>
+  <cell X="46" Y="13">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="13">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1368,32 +1524,48 @@
   <cell X="32" Y="14">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="14"></cell>
+  <cell X="33" Y="14">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="34" Y="14">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="35" Y="14"></cell>
+  <cell X="35" Y="14">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="36" Y="14">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="37" Y="14">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="38" Y="14"></cell>
-  <cell X="39" Y="14"></cell>
-  <cell X="40" Y="14"></cell>
-  <cell X="41" Y="14"></cell>
+  <cell X="38" Y="14">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="14">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="14">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="41" Y="14">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="42" Y="14">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="43" Y="14">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="44" Y="14"></cell>
+  <cell X="44" Y="14">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="45" Y="14">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="46" Y="14"></cell>
+  <cell X="46" Y="14">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="14">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1466,32 +1638,48 @@
   <cell X="32" Y="15">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="15"></cell>
+  <cell X="33" Y="15">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="34" Y="15">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="35" Y="15"></cell>
-  <cell X="36" Y="15"></cell>
+  <cell X="35" Y="15">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="36" Y="15">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="37" Y="15">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="38" Y="15">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="39" Y="15"></cell>
-  <cell X="40" Y="15"></cell>
+  <cell X="39" Y="15">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="15">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="41" Y="15">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="42" Y="15">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="43" Y="15"></cell>
-  <cell X="44" Y="15"></cell>
+  <cell X="43" Y="15">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="44" Y="15">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="45" Y="15">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="46" Y="15"></cell>
+  <cell X="46" Y="15">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="15">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1564,15 +1752,21 @@
   <cell X="32" Y="16">
     <object Name="LABYRINTHINETRAIL_SubdimensionalVortex"></object>
   </cell>
-  <cell X="33" Y="16"></cell>
+  <cell X="33" Y="16">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="34" Y="16">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="35" Y="16">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="36" Y="16"></cell>
-  <cell X="37" Y="16"></cell>
+  <cell X="36" Y="16">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="37" Y="16">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="38" Y="16">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1585,15 +1779,21 @@
   <cell X="41" Y="16">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="42" Y="16"></cell>
-  <cell X="43" Y="16"></cell>
+  <cell X="42" Y="16">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="43" Y="16">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="44" Y="16">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="45" Y="16">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="46" Y="16"></cell>
+  <cell X="46" Y="16">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="16">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1670,28 +1870,49 @@
   <cell X="32" Y="17">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="33" Y="17"></cell>
-  <cell X="34" Y="17"></cell>
+  <cell X="33" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="34" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="35" Y="17">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="36" Y="17">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="37" Y="17"></cell>
-  <cell X="38" Y="17"></cell>
-  <cell X="39" Y="17"></cell>
-  <cell X="40" Y="17"></cell>
-  <cell X="41" Y="17"></cell>
-  <cell X="42" Y="17"></cell>
+  <cell X="37" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="38" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_SubdimensionalVortex"></object>
+  </cell>
+  <cell X="41" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="42" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="43" Y="17">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
   <cell X="44" Y="17">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="45" Y="17"></cell>
-  <cell X="46" Y="17"></cell>
+  <cell X="45" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="46" Y="17">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="47" Y="17">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1769,8 +1990,12 @@
   <cell X="33" Y="18">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="34" Y="18"></cell>
-  <cell X="35" Y="18"></cell>
+  <cell X="34" Y="18">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="35" Y="18">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="36" Y="18">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1795,8 +2020,12 @@
   <cell X="43" Y="18">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="44" Y="18"></cell>
-  <cell X="45" Y="18"></cell>
+  <cell X="44" Y="18">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="45" Y="18">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="46" Y="18">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
@@ -1874,16 +2103,36 @@
   <cell X="34" Y="19">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>
-  <cell X="35" Y="19"></cell>
-  <cell X="36" Y="19"></cell>
-  <cell X="37" Y="19"></cell>
-  <cell X="38" Y="19"></cell>
-  <cell X="39" Y="19"></cell>
-  <cell X="40" Y="19"></cell>
-  <cell X="41" Y="19"></cell>
-  <cell X="42" Y="19"></cell>
-  <cell X="43" Y="19"></cell>
-  <cell X="44" Y="19"></cell>
+  <cell X="35" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="36" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="37" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="38" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="39" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="40" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="41" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="42" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="43" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
+  <cell X="44" Y="19">
+    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+  </cell>
   <cell X="45" Y="19">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
   </cell>

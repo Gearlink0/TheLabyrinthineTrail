@@ -131,4 +131,8 @@
     <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
   </object>
 
+  <object Name="LABYRINTHINETRAIL_InertFloor" Inherits="MarbleFloor">
+    <part Name="Render" DisplayName="inert floor" ColorString="&amp;C^k" TileColor="&amp;K" DetailColor="k" />
+  </object>
+
 </objects>
