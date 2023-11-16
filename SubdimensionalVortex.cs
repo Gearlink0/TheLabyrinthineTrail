@@ -3,6 +3,7 @@ using Genkit;
 using System;
 using System.Collections.Generic;
 using XRL.Core;
+using XRL.Rules;
 
 namespace XRL.World.Parts
 {
@@ -82,6 +83,76 @@ namespace XRL.World.Parts
       }
       else
         this.DestinationZoneID = SpaceTimeVortex.GetRandomDestinationZoneID( this.targetWorld );
+    }
+
+    public override bool Render(RenderEvent E)
+    {
+      if (Stat.RandomCosmetic(1, 60) < 3)
+      {
+        string particleColor = "&m";
+        switch (Stat.RandomCosmetic(0, 4))
+        {
+          case 0:
+            particleColor = "&m";
+            break;
+          case 1:
+            particleColor = "&M";
+            break;
+          case 2:
+            particleColor = "&y";
+            break;
+          case 3:
+            particleColor = "&Y";
+            break;
+          case 4:
+            particleColor = "&O";
+            break;
+        }
+        Cell currentCell = this.ParentObject.CurrentCell;
+        The.ParticleManager.AddRadial(
+          particleColor + "ù",
+          (float) currentCell.X,
+          (float) currentCell.Y,
+          (float) Stat.RandomCosmetic(0, 7),
+          (float) Stat.RandomCosmetic(5, 10),
+          0.01f * (float) Stat.RandomCosmetic(4, 6),
+          -0.01f * (float) Stat.RandomCosmetic(3, 7)
+        );
+      }
+      switch (Stat.RandomCosmetic(0, 4))
+      {
+        case 0:
+          E.ColorString = "&m^k";
+          break;
+        case 1:
+          E.ColorString = "&M^k";
+          break;
+        case 2:
+          E.ColorString = "&y^k";
+          break;
+        case 3:
+          E.ColorString = "&Y^k";
+          break;
+        case 4:
+          E.ColorString = "&O^k";
+          break;
+      }
+      switch (Stat.RandomCosmetic(0, 3))
+      {
+        case 0:
+          E.RenderString = "\t";
+          break;
+        case 1:
+          E.RenderString = "é";
+          break;
+        case 2:
+          E.RenderString = "\u0015";
+          break;
+        case 3:
+          E.RenderString = "\u000F";
+          break;
+      }
+      return true;
     }
 
 		public override bool FinalRender(RenderEvent E, bool bAlt)
