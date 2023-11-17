@@ -42,7 +42,7 @@
     <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
     <part Name="LABYRINTHINETRAIL_FindingFork"
       TargetZoneState="LABYRINTHINETRAIL_FinalQuest_ZoneID"
-      RewardBlueprint="LABYRINTHINETRAIL_FinalQuestCask"
+      GoesToHideaway="True"
     />
     <tag Name="QuestItem" />
   </object>
