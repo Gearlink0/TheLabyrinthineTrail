@@ -71,6 +71,40 @@
     <!-- TODO: Juicy sultan loot -->
   </object>
 
+  <object Name="LABYRINTHINETRAIL_HereticMask" Inherits="BaseMask">
+    <part Name="Armor" AV="0" DV="1" Ego="1" />
+    <part Name="Unreplicable" />
+    <part Name="Physics" Weight="1" />
+    <tag Name="Tier" Value="6" />
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+    <tag Name="Mods" Value="None" />
+    <xtagGrammar Proper="true" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_BloomingFace" Inherits="LABYRINTHINETRAIL_HereticMask">
+    <part Name="Render" DisplayName="{{blooming|Blooming}} Face" RenderString="]" Tile="Items/BloomingFace.png" ColorString="&amp;K" DetailColor="M" />
+    <part Name="Description" Short="Agate chips contour a starless sleeping visage. From behind the empty eyes coil a rose red braid of garnets that races up the mask and towards the crown of the mind. There, the stem blooms into an ament tower of florets." />
+    <part Name="LABYRINTHINETRAIL_ModImprovedBurgeoning" Tier="6" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_GnashingFace" Inherits="LABYRINTHINETRAIL_HereticMask">
+    <part Name="Render" DisplayName="{{gnashing|Gnashing}} Face" RenderString="]" Tile="Items/GnashingFace.png" ColorString="&amp;y" DetailColor="W" />
+    <part Name="Description" Short="Chrome drips down to form the exaggerated jawline of a world-scale leviathan. Golden rivets sharpen into needle teeth and a gnarled Spindle horn. Each fang is engraved with a different name plowed under by the turn of the stars." />
+    <part Name="LABYRINTHINETRAIL_ModImprovedLifeDrain" Tier="6" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_WeepingFace" Inherits="LABYRINTHINETRAIL_HereticMask">
+    <part Name="Render" DisplayName="{{weeping|Weeping}} Face" RenderString="]" Tile="Items/WeepingFace.png" ColorString="&amp;c" DetailColor="b" />
+    <part Name="Description" Short="Sheets of lapis lazuli pour down the eyeless mask in asymmetrical rivers. Chords of thorns grow from the frozen visage and crawl upwards to strangle a dark blue sun disk. Beneath the corona wakes the third and final eye." />
+    <part Name="LABYRINTHINETRAIL_ModImprovedClairvoyance" Tier="6" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_LaughingFace" Inherits="LABYRINTHINETRAIL_HereticMask">
+    <part Name="Render" DisplayName="{{laughing|Laughing}} Face" RenderString="]" Tile="Items/LaughingFace.png" ColorString="&amp;R" DetailColor="Y" />
+    <part Name="Description" Short="Bright silver and carnelian dance and swirl about the upturned cheeks like licks of fire. Onyx senses and cares feed the conflagration. The flame tongues swirl upwards where they solidify into a shock of ruk plumage." />
+    <part Name="LABYRINTHINETRAIL_ModImprovedPyrokinesis" Tier="6" />
+  </object>
+
   <object Name="LABYRINTHINETRAIL_TreasureHunterCorpse" Inherits="Corpse">
     <part Name="Render" RenderLayer="6" DisplayName="{{Y|human remains}}" ColorString="&amp;Y" DetailColor="y" TileColor="&amp;Y" />
     <tag Name="NoSparkingQuest" />

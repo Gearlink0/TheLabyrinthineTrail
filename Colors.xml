@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<colors>
+	<shaders>
+		<shader Name="blooming" Type="alternation" Colors="M-K-K-K-M" ShowInPicker="true" />
+		<shader Name="gnashing" Type="alternation" Colors="y-y-W-y-W-y-y" ShowInPicker="true" />
+		<shader Name="weeping" Type="alternation" Colors="b-b-c-b-b" ShowInPicker="true" />
+		<shader Name="laughing" Type="alternation" Colors="R-Y-R-Y-R" ShowInPicker="true" />
+	</shaders>
+</colors>
