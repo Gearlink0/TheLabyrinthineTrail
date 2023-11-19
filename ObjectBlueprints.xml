@@ -108,10 +108,19 @@
   <object Name="LABYRINTHINETRAIL_TreasureHunterCorpse" Inherits="Corpse">
     <part Name="Render" RenderLayer="6" DisplayName="{{Y|human remains}}" ColorString="&amp;Y" DetailColor="y" TileColor="&amp;Y" />
     <tag Name="NoSparkingQuest" />
-    <part Name="LABYRINTHINETRAIL_ExileCorpseLoot" />
+    <part Name="LABYRINTHINETRAIL_TreasureHunterCorpseLoot" />
     <part Name="Description" Short="A skeletal shape protrudes from the sludge." />
     <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
     <tag Name="NoClear" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_DissolvedJournal" Inherits="Book">
+    <part Name="Render" DisplayName="{{W|dissolved journal}}" ColorString="&amp;w" RenderString="=" RenderLayer="5" Tile="Items/sw_book_2.bmp" TileColor="&amp;w" DetailColor="G" />
+    <part Name="Description" Short="Some small parchment sheets bound in a dark leather cover. Its front has liquefied and mingles with the acrid slime." />
+    <part Name="Book" ID="LABYRINTHINETRAIL_DissolvedJournal" />
+    <part Name="Commerce" Value="1" />
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+    <xtagGrammar Proper="false" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_BaseRivalHunter" Inherits="NPC">

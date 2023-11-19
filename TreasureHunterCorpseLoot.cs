@@ -3,7 +3,7 @@ using System;
 namespace XRL.World.Parts
 {
   [Serializable]
-  public class LABYRINTHINETRAIL_ExileCorpseLoot : IPart
+  public class LABYRINTHINETRAIL_TreasureHunterCorpseLoot : IPart
   {
     public bool created;
 
@@ -24,6 +24,7 @@ namespace XRL.World.Parts
         this.created = true;
         Cell currentCell = this.ParentObject.CurrentCell;
         currentCell.AddObject("LABYRINTHINETRAIL_FindingFork");
+        currentCell.AddObject("LABYRINTHINETRAIL_DissolvedJournal");
         this.ParentObject.UnregisterPartEvent((IPart) this, "EnteredCell");
       }
       return base.FireEvent(E);
