@@ -16,7 +16,7 @@ namespace XRL.World.ZoneFactories
       }
       Zone zone1 = new Zone(80, 25);
       zone1.ZoneID = Request.ZoneID;
-      zone1.loadMap("AltHereticsHideaway.rpm");
+      zone1.loadMap("HereticsHideaway.rpm");
       zone1.DisplayName = "Hideaway";
       zone1.GetCell(0, 0).RequireObject("ZoneMusic").SetStringProperty("Track", "Clam Dimension");
       zone1.Built = true;
