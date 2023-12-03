@@ -48,12 +48,12 @@ namespace XRL
     public static void CreateHunters(int numHunters, Zone zone)
     {
       bool placedHunters = false;
-      if (The.Game.PlayerReputation.get("Prey") >= 250)
+      if (The.Game.PlayerReputation.Get("Prey") >= 250)
         return;
       GameObject player = The.Player;
       for (int index = 1; index <= numHunters; ++index)
       {
-        GameObject gameObject = GameObject.create("LABYRINTHINETRAIL_BaseRivalHunter");
+        GameObject gameObject = GameObject.Create("LABYRINTHINETRAIL_BaseRivalHunter");
         gameObject.pBrain.Hostile = true;
         gameObject.pBrain.Hibernating = false;
         gameObject.pBrain.SetFeeling(player, -100);

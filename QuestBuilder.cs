@@ -21,13 +21,13 @@ namespace XRL.World.WorldBuilders
 
       // Pick a random ruin zone to be the target of the first quest
       Location2D location = builder.popMutableLocationOfTerrain("Ruins");
-			string zoneID = Zone.XYToID(this.World, location.x, location.y, 10);
+			string zoneID = Zone.XYToID(this.World, location.X, location.Y, 10);
       XRLCore.Core.Game.SetStringGameState("LABYRINTHINETRAIL_FirstQuest_ZoneID", zoneID);
       MetricsManager.LogInfo( zoneID );
 
       // Pick a random rainbow wood zone to be the target of the second quest
       location = builder.popMutableLocationOfTerrain("Fungal");
-			zoneID = Zone.XYToID(this.World, location.x, location.y, 10);
+			zoneID = Zone.XYToID(this.World, location.X, location.Y, 10);
       XRLCore.Core.Game.SetStringGameState("LABYRINTHINETRAIL_SecondQuest_ZoneID", zoneID);
       Cell targetCell = The.ZoneManager.GetZone(zoneID).GetEmptyReachableCells().RemoveRandomElement<Cell>();
       XRLCore.Core.Game.SetStringGameState("LABYRINTHINETRAIL_SecondQuest_CellAddress", targetCell.GetAddress());
@@ -49,7 +49,7 @@ namespace XRL.World.WorldBuilders
 
       // Pick a random baroque ruin zone to be the target of the final quest
       location = builder.popMutableLocationOfTerrain("BaroqueRuins");
-			zoneID = Zone.XYToID(this.World, location.x, location.y, 10);
+			zoneID = Zone.XYToID(this.World, location.X, location.Y, 10);
       XRLCore.Core.Game.SetStringGameState("LABYRINTHINETRAIL_FinalQuest_ZoneID", zoneID);
 			MetricsManager.LogInfo( zoneID );
     }
