@@ -23,7 +23,7 @@ namespace XRL.World.Parts
           return true;
         this.created = true;
         Cell currentCell = this.ParentObject.CurrentCell;
-        currentCell.AddObject("LABYRINTHINETRAIL_FindingFork");
+        currentCell.AddObject("LABYRINTHINETRAIL_FirstQuestFork");
         currentCell.AddObject("LABYRINTHINETRAIL_DissolvedJournal");
         this.ParentObject.UnregisterPartEvent((IPart) this, "EnteredCell");
       }
