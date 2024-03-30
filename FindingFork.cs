@@ -222,6 +222,7 @@ namespace XRL.World.Parts
           {
             if( !this.GaveReward )
             {
+              // Complete quests
               Popup.Show("The fork's tines probe the air and plunge into an unseen firmness. An object is excised.");
               List<Cell> emptyAdjacentCells = currentCell.GetEmptyAdjacentCells(1, 1);
               emptyAdjacentCells.RemoveRandomElement<Cell>()?.AddObject( this.RewardBlueprint );
@@ -278,6 +279,11 @@ namespace XRL.World.Parts
         cell = Object.GetCurrentCell();
       if (cell.ParentZone.Built)
       {
+        if (XRLCore.Core.Game.GetBooleanGameState("LABYRINTHINETRAIL_HideawayCollapsed"))
+        {
+          Popup.Show("The fork's tines prod an unseen firmness but it does not budge. The fork's home is no more.");
+          return true;
+        }
         if (this.GetActivePartFirstSubject().CurrentZone.ZoneID.StartsWith("JoppaWorld.") && Object.IsPlayer())
           this.TeleportToHideaway(Object);
       }
@@ -340,10 +346,12 @@ namespace XRL.World.Parts
 
     public Cell GenerateTargetCell()
     {
-      if ( !this.TargetZoneState.IsNullOrEmpty() )
+      if ( !this.TargetCellState.IsNullOrEmpty() )
         return Cell.FromAddress( XRLCore.Core.Game.GetStringGameState( this.TargetCellState ) );
       else if (TargetCellX >= 0 && TargetCellY >= 0)
         return The.ZoneManager.GetZone(this.TargetZone).GetCell(TargetCellX, TargetCellY);
+      if(The.ZoneManager.GetZone(this.TargetZone) == null)
+        MetricsManager.LogInfo("noot noot got no zone");
       return The.ZoneManager.GetZone(this.TargetZone).GetEmptyReachableCells().RemoveRandomElement<Cell>();
     }
 

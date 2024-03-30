@@ -75,6 +75,7 @@
     <part Name="Armor" AV="0" DV="1" Ego="1" />
     <part Name="Unreplicable" />
     <part Name="Physics" Weight="1" />
+    <part Name="LABYRINTHINETRAIL_CollapseHideaway" />
     <tag Name="Tier" Value="6" />
     <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
     <tag Name="Mods" Value="None" />

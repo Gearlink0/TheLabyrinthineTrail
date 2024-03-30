@@ -970,7 +970,6 @@
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
   </cell>
   <cell X="40" Y="9">
-    <object Name="Reliquary"></object>
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
   </cell>
   <cell X="41" Y="9">
@@ -1197,6 +1196,7 @@
   </cell>
   <cell X="37" Y="11">
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_BloomingFace"></object>
   </cell>
   <cell X="38" Y="11">
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
@@ -1212,6 +1212,7 @@
   </cell>
   <cell X="42" Y="11">
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_GnashingFace"></object>
   </cell>
   <cell X="43" Y="11">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
@@ -1423,6 +1424,7 @@
   </cell>
   <cell X="37" Y="13">
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_LaughingFace"></object>
   </cell>
   <cell X="38" Y="13">
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
@@ -1438,6 +1440,7 @@
   </cell>
   <cell X="42" Y="13">
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_WeepingFace"></object>
   </cell>
   <cell X="43" Y="13">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>
