@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <quests>
-	<quest Name="Follow the finding fork"
-  	Accomplishment="You found the secretive cache the finding fork pointed to."
+	<quest Name="Follow the stained fork"
+  	Accomplishment="You found the secretive cache the stained finding fork pointed to."
     Hagiograph="=name= devised a means to track down the hidden spaces in the creases between dimensions."
     HagiographCategory="CreatesSomething">
 
-    <step Name="Follow the finding fork" XP="1000">
-      <text>Follow the finding fork and see where it leads.</text>
+    <step Name="Follow the stained fork" XP="1000">
+      <text>Follow the stained finding fork and see where it leads.</text>
+    </step>
+  </quest>
+
+	<quest Name="Follow the weathered fork"
+  	Accomplishment="You found the secretive cache the weathered fork pointed to."
+    Hagiograph="=name= refined =their= subdimensional tracker to find new hidden pockets."
+    HagiographCategory="CreatesSomething">
+
+    <step Name="Follow the weathered fork" XP="2000">
+      <text>Follow the weathered finding fork and see where it leads.</text>
+    </step>
+  </quest>
+
+	<quest Name="Follow the opaline fork"
+  	Accomplishment="You found the subdimensional hideaway the opaline fork pointed to."
+    Hagiograph="Inspired by the subdimensional vistas, =name= crafted a mask of unequaled splendor and artistic value."
+    HagiographCategory="CreatesSomething">
+
+    <step Name="Follow the opaline fork" XP="3000">
+      <text>Follow the opaline finding fork and see where it leads.</text>
     </step>
   </quest>
 </quests>

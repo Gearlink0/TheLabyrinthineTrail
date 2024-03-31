@@ -17,8 +17,10 @@
   </object>
 
   <object Name="LABYRINTHINETRAIL_FirstQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
+		<part Name="Render" DisplayName="stained fork" ColorString="&amp;g" />
+    <part Name="Description" Short="Silver antennae sprout from a square head stained with the murk of Golgotha. It beeps with wistful want." />
     <part Name="Physics" Category="Quest Items" />
-    <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
+    <part Name="QuestStarter" Quest="Follow the stained fork" Trigger="Taken" />
     <part Name="LABYRINTHINETRAIL_FindingFork"
       TargetZoneState="LABYRINTHINETRAIL_FirstQuest_ZoneID"
       RewardBlueprint="LABYRINTHINETRAIL_FirstQuestCask"
@@ -27,8 +29,11 @@
   </object>
 
   <object Name="LABYRINTHINETRAIL_SecondQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
+		<part Name="Render" DisplayName="weathered fork" ColorString="&amp;K" />
+    <part Name="Description" Short="Silver antennae sprout from a square head nicked and scratched with age. It beeps with wistful want." />
     <part Name="Physics" Category="Quest Items" />
-    <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
+		<part Name="CompleteQuestOnTaken" Quest="Follow the stained fork" QuestStep="Follow the stained fork" />
+    <part Name="QuestStarter" Quest="Follow the weathered fork" Trigger="Taken" />
     <part Name="LABYRINTHINETRAIL_FindingFork"
       TargetZoneState="LABYRINTHINETRAIL_SecondQuest_ZoneID"
       TargetCellState="LABYRINTHINETRAIL_SecondQuest_CellAddress"
@@ -38,8 +43,16 @@
   </object>
 
   <object Name="LABYRINTHINETRAIL_FinalQuestFork" Inherits="LABYRINTHINETRAIL_FindingFork">
+		<part Name="Render" DisplayName="opaline fork" />
+    <part Name="Description" Short="Silver antennae sprout from a square head that shines with scars from the between space. It beeps with wistful want." />
     <part Name="Physics" Category="Quest Items" />
-    <part Name="QuestStarter" Quest="Follow the finding fork" Trigger="Taken" />
+		<part
+      Name="AnimatedMaterialGeneric"
+      AnimationLength="250"
+      ColorStringAnimationFrames="0=&amp;M,50=&amp;m,100=&amp;y,150=&amp;Y,200=&amp;O"
+    />
+		<part Name="CompleteQuestOnTaken" Quest="Follow the weathered fork" QuestStep="Follow the weathered fork" />
+    <part Name="QuestStarter" Quest="Follow the opaline finding fork" Trigger="Taken" />
     <part Name="LABYRINTHINETRAIL_FindingFork"
       TargetZoneState="LABYRINTHINETRAIL_FinalQuest_ZoneID"
       GoesToHideaway="True"
@@ -76,6 +89,7 @@
     <part Name="Unreplicable" />
     <part Name="Physics" Weight="1" />
     <part Name="LABYRINTHINETRAIL_CollapseHideaway" />
+		<part Name="CompleteQuestOnTaken" Quest="Follow the opaline fork" QuestStep="Follow the opaline fork" />
     <tag Name="Tier" Value="6" />
     <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
     <tag Name="Mods" Value="None" />
@@ -167,11 +181,13 @@
 
   <object Name="LABYRINTHINETRAIL_InertWall" Inherits="Burnished Azzurum">
     <part Name="Render" DisplayName="inert wall" ColorString="&amp;C^k" TileColor="&amp;K" DetailColor="k" />
+    <part Name="Description" Short="Void has been poured and fired into sheets, then tessellated to bear the weight of the world seam." />
     <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_InertDoor" Inherits="Metal Door">
     <part Name="Render" DisplayName="inert door" ColorString="&amp;C^k" TileColor="&amp;K" DetailColor="k" />
+    <part Name="Description" Short="Hinges chomp tight about a metal bulkhead, eroded frame whistling with escaping space." />
     <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
   </object>
 
