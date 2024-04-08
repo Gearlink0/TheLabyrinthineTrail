@@ -63,8 +63,8 @@ namespace XRL.World.Parts
 				this.ParentObject.SystemMoveTo( this.targetCell );
 
 			Cell currentCell = this.ParentObject.CurrentCell;
-      // Filter adjacentCells so it doesn't contain cells with or objects that
-      // repel them
+      // Filter adjacentCells so it doesn't contain cells with vortices or objects
+      // that repel them
       Predicate<Cell> pred = cell => cell.GetFirstObjectWithTag( repelledByTag ) == null;
       this.targetCell = currentCell.GetRandomLocalAdjacentCell(pred);
       return base.HandleEvent(E);
@@ -114,10 +114,10 @@ namespace XRL.World.Parts
 
     public bool ApplyVortex( GameObject GO )
     {
-      if (this.ParentObject == GO || !SpaceTimeVortex.IsValidTarget(GO))
+      if (this.ParentObject == GO || !LABYRINTHINETRAIL_SubdimensionalVortex.IsValidTarget(GO))
         return false;
 
-      if (this.DestinationZoneID == null && !SpaceTimeVortex.ObjectCallsForExplicitTracking(GO))
+      if (this.DestinationZoneID == null && !LABYRINTHINETRAIL_SubdimensionalVortex.IsValidTarget(GO))
       {
         IComponent<GameObject>.XDidYToZ(
           GO,
@@ -162,6 +162,8 @@ namespace XRL.World.Parts
       }
       return true;
     }
+
+    public static bool IsValidTarget(GameObject GO) => !GO.HasPart<LABYRINTHINETRAIL_SubdimensionalVortex>() && SpaceTimeVortex.IsValidTarget(GO);
 
     public void RequireDestinationZone()
     {
