@@ -426,12 +426,21 @@ namespace XRL.World.Parts
       if (Who == null)
         return;
       if (this.ActivatedAbilityID == Guid.Empty)
+      {
+        string commandName = this.GetActivatedAbilityCommandName();
         this.ActivatedAbilityID = Who.AddActivatedAbility(
           this.ActivatedAbilityName,
-          this.GetActivatedAbilityCommandName(),
+          commandName,
           this.ActivatedAbilityClass ?? (Who == this.ParentObject ? "Maneuvers" : "Items"),
           Icon: this.ActivatedAbilityIcon
         );
+        // Add activated ability to AllowedOnWorld map.
+        // TODO: Replace this with official interface if/when that gets added.
+        if (!AbilityManager.WorldMapAllowed.Contains(commandName))
+        {
+          AbilityManager.WorldMapAllowed.Add(commandName);
+        }
+      }
       else
         this.SyncActivatedAbilityName(Who);
     }
