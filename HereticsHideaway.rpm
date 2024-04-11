@@ -970,7 +970,7 @@
     <object Name="LABYRINTHINETRAIL_InertFloor"></object>
   </cell>
   <cell X="40" Y="9">
-    <object Name="LABYRINTHINETRAIL_InertFloor"></object>
+    <object Name="LABYRINTHINETRAIL_HereticMural"></object>
   </cell>
   <cell X="41" Y="9">
     <object Name="LABYRINTHINETRAIL_InertWall"></object>

@@ -4,6 +4,7 @@
   <object Name="LABYRINTHINETRAIL_FindingFork" Inherits="Item">
     <part Name="Render" DisplayName="finding fork" Tile="items/Fork.png" ColorString="&amp;y" DetailColor="Y" />
     <part Name="Description" Short="Silver antennae sprout from a square head. It beeps with wistful want." />
+    <part Name="Commerce" Value="25" />
     <part Name="Metal" />
     <part Name="MeleeWeapon" MaxStrengthBonus="3" BaseDamage="1d4" Skill="ShortBlades" />
     <part Name="Examiner" Unknown="UnknownSmallTrinket" Alternate="UnknownSmallTrinket" Complexity="1" Understanding="1" />
@@ -52,7 +53,7 @@
       ColorStringAnimationFrames="0=&amp;M,50=&amp;m,100=&amp;y,150=&amp;Y,200=&amp;O"
     />
 		<part Name="CompleteQuestOnTaken" Quest="Follow the weathered fork" QuestStep="Follow the weathered fork" />
-    <part Name="QuestStarter" Quest="Follow the opaline finding fork" Trigger="Taken" />
+    <part Name="QuestStarter" Quest="Follow the opaline fork" Trigger="Taken" />
     <part Name="LABYRINTHINETRAIL_FindingFork"
       TargetZoneState="LABYRINTHINETRAIL_FinalQuest_ZoneID"
       GoesToHideaway="True"
@@ -78,10 +79,6 @@
 
   <object Name="LABYRINTHINETRAIL_SecondQuestCask" Inherits="LABYRINTHINETRAIL_SubdimensionalCask">
     <inventoryobject Blueprint="LABYRINTHINETRAIL_FinalQuestFork" />
-  </object>
-
-  <object Name="LABYRINTHINETRAIL_FinalQuestCask" Inherits="LABYRINTHINETRAIL_SubdimensionalCask">
-    <!-- TODO: Juicy sultan loot -->
   </object>
 
   <object Name="LABYRINTHINETRAIL_HereticMask" Inherits="BaseMask">
@@ -144,7 +141,7 @@
     <part Name="Brain" Factions="Prey-100" />
     <stat Name="Agility" Boost="1" />
     <part Name="LABYRINTHINETRAIL_RivalCritical" />
-    <part Name="Description" Short="Well traveled dust covers =pronouns.possessive= cloak and hat. =pronouns.Possessive= ears are tuned to the frequencies of finding. =pronouns.Possessive= nerves coil around pistol grips." />
+    <part Name="Description" Short="Well traveled dust covers =pronouns.possessive= cloak and hat. =pronouns.Possessive= ears are tuned to the frequencies of finding and =pronouns.Possessive= nerves coil around pistol grips." />
     <property Name="Role" Value="Skirmisher" />
     <skill Name="Acrobatics_Dodge" />
     <skill Name="Tinkering" />
@@ -173,26 +170,47 @@
   </object>
 
   <object Name="LABYRINTHINETRAIL_SubdimensionalVortex" Inherits="Space-Time Vortex">
+    <part Name="Render" DisplayName="space-time vortex" />
+    <part Name="Description" Short="A howling hole is rent in the subimensional cavity, the opaline lights of the between space rushing to a horizon." />
     <removepart Name="SpaceTimeVortex" />
     <removepart Name="Temporary" />
     <part Name="LABYRINTHINETRAIL_SubdimensionalVortex" />
     <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
   </object>
 
-  <object Name="LABYRINTHINETRAIL_InertWall" Inherits="Burnished Azzurum">
+  <object Name="LABYRINTHINETRAIL_InertWall" Inherits="CrysteelPlatedWall">
     <part Name="Render" DisplayName="inert wall" ColorString="&amp;C^k" TileColor="&amp;K" DetailColor="k" />
     <part Name="Description" Short="Void has been poured and fired into sheets, then tessellated to bear the weight of the world seam." />
+    <removepart Name="Graffitied" />
     <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_InertDoor" Inherits="Metal Door">
     <part Name="Render" DisplayName="inert door" ColorString="&amp;C^k" TileColor="&amp;K" DetailColor="k" />
     <part Name="Description" Short="Hinges chomp tight about a metal bulkhead, eroded frame whistling with escaping space." />
+    <removepart Name="Graffitied" />
     <tag Name="LABYRINTHINETRAIL_RepelsSubdimensionalVortices" />
   </object>
 
   <object Name="LABYRINTHINETRAIL_InertFloor" Inherits="MarbleFloor">
     <part Name="Render" DisplayName="inert floor" ColorString="&amp;C^k" TileColor="&amp;K" DetailColor="k" />
+  </object>
+
+  <object Name="LABYRINTHINETRAIL_HereticMural" Inherits="LABYRINTHINETRAIL_InertWall">
+    <part Name="Render" DisplayName="faded inscription" Tile="walls/HereticMural.png" />
+    <part Name="Description" Short="
+How mani lang hundred yerene haven I werk for theim?
+How mani wonderes didde min handene spinen from the lathe?
+How mani delites didde I yifte with min craftes?
+The Sultan shaleth nu seieth non, for nu I am a heretike.
+Min werkes hath ibeen seis and throu to the sterre fir.
+Al for the treuth, for seiende with jeuele and metale and shape what min eiene seen.
+For in min folishnes, I mistak servitude for kinshipe.
+Al I hadde to iseien was in min faces, and these aren al that aren lev,
+in this space bitwin space, sauf from the Sultans eiene.
+    " />
+    <tag Name="PaintedWall" Value="*delete" />
+    <tag Name="PaintedWallExtension" Value="*delete" />
   </object>
 
 </objects>
