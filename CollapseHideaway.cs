@@ -23,9 +23,16 @@ namespace XRL.World.Parts
     {
       if (E.ID == "BeginBeingTaken")
       {
-        XRL.Messages.MessageQueue.AddPlayerMessage( "BeginBeingTaken fired" );
-        if (Popup.ShowYesNoCancel("You feel a weight around this mask. It has become a spine of this bubble and moving it risks a collapse. Are you sure you want to take it?") != DialogResult.Yes)
-          return false;
+        GameObject TakingObject = E.GetGameObjectParameter("TakingObject");
+        if (
+					TakingObject != null
+					&& TakingObject.IsPlayer()
+					&& The.PlayerCell?.ParentZone?.ZoneWorld == "LABYRINTHINETRAIL_Hideaway"
+				)
+        {
+          if (Popup.ShowYesNoCancel("You feel a weight around this mask. It has become a spine of this bubble and moving it risks a collapse. Are you sure you want to take it?") != DialogResult.Yes)
+            return false;
+        }
       }
       else if (E.ID == "Taken" || E.ID == "Equipped")
       {
