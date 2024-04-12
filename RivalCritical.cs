@@ -21,6 +21,7 @@ namespace XRL.World.Parts
       if (
         E.Item.HasPart("MissileWeapon")
         && (E.Item.GetPart("MissileWeapon") as MissileWeapon ).Skill == "Pistol"
+        && !E.Item.HasPart("LABYRINTHINETRAIL_RivalCriticalDamage")
       ){
         E.Item.AddPart<LABYRINTHINETRAIL_RivalCriticalDamage>();
       }
@@ -43,23 +44,6 @@ namespace XRL.World.Parts
         + "% more likely to score critical hits with pistols and critical hits with pistols have a PV equal to their target's AV."
       );
       return base.HandleEvent(E);
-    }
-
-    public override void Register(GameObject Object)
-    {
-      Object.RegisterPartEvent((IPart) this, "MissileAttackerCriticalHit");
-      base.Register(Object);
-    }
-
-    public override bool FireEvent(Event E)
-    {
-      if (E.ID == "MissileAttackerCriticalHit")
-      {
-        int AV = E.GetGameObjectParameter("Defender").GetStat("AV").Value;
-        E.SetParameter("Penetrations", AV + this.PenetrationBonus);
-				E.SetParameter("PenetrationCap", AV + this.PenetrationBonus);
-      }
-      return base.FireEvent(E);
     }
   }
 }
