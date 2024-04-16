@@ -319,19 +319,17 @@ namespace XRL.World.Parts
           return true;
         }
         if (this.GetActivePartFirstSubject().CurrentZone.ZoneID.StartsWith("JoppaWorld.") && Object.IsPlayer())
-          this.TeleportToHideaway(Object);
+          LABYRINTHINETRAIL_FindingFork.TeleportToHideaway(Object);
       }
       return true;
     }
 
-    public void TeleportToHideaway(GameObject Object)
+    public static void TeleportToHideaway(GameObject Object)
     {
-      // bool flag = The.ZoneManager.IsZoneBuilt(this.ClamSystem.ClamWorldId);
       bool zoneBuilt  = The.ZoneManager.IsZoneBuilt("LABYRINTHINETRAIL_Hideaway.40.12.1.1.10");
-      // Zone clamZone = this.ClamSystem.GetClamZone();
       Zone hideawayZone = The.ZoneManager.GetZone("LABYRINTHINETRAIL_Hideaway.40.12.1.1.10");
-      // Cell currentCell = this.GetLinkedClam(clamZone)?.CurrentCell;
-      Cell targetCell = hideawayZone.GetEmptyReachableCells().RemoveRandomElement<Cell>();
+      Predicate<Cell> pred = cell => cell.X < 20 || cell.X > 60;
+      Cell targetCell = hideawayZone.GetEmptyReachableCells( pred ).RemoveRandomElement<Cell>();
       if (targetCell == null)
       {
         IComponent<GameObject>.AddPlayerMessage("You hear a shloop and then a hitch. Nothing happens.");
@@ -342,7 +340,7 @@ namespace XRL.World.Parts
           return;
         The.ZoneManager.SuspendZone(hideawayZone);
         The.ZoneManager.DeleteZone(hideawayZone);
-        this.TeleportToHideaway(Object);
+        LABYRINTHINETRAIL_FindingFork.TeleportToHideaway(Object);
       }
       else
       {
