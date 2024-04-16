@@ -63,7 +63,7 @@
 
   <object Name="LABYRINTHINETRAIL_SubdimensionalCask" Inherits="Chest">
     <part Name="Render" DisplayName="black cask" Tile="items/SubdimensionalCask.png" ColorString="&amp;K" DetailColor="m" />
-    <part Name="Description" Short="Tumbling between the dimensional membranes has worn iridescent distress onto the lightless metal cylinder" />
+    <part Name="Description" Short="Tumbling between the dimensional membranes has worn iridescent distress onto the lightless metal cylinder. At one end a panel is latched shut." />
     <part Name="Physics" Weight="1" />
     <part
       Name="AnimatedMaterialGeneric"
@@ -136,12 +136,12 @@
   </object>
 
   <object Name="LABYRINTHINETRAIL_BaseRivalHunter" Inherits="NPC">
-    <part Name="Render" DisplayName="forkseeker" Tile="Creatures/caste_flipped_14.bmp" RenderString="h" ColorString="&amp;y" DetailColor="c" />
+    <part Name="Render" DisplayName="forkseeker" Tile="creatures/RivalHunter.png" RenderString="h" ColorString="&amp;y" DetailColor="c" />
     <part Name="ConversationScript" ConversationID="Arconaut" />
     <part Name="Brain" Factions="Prey-100" />
     <stat Name="Agility" Boost="1" />
     <part Name="LABYRINTHINETRAIL_RivalCritical" />
-    <part Name="Description" Short="Well traveled dust covers =pronouns.possessive= cloak and hat. =pronouns.Possessive= ears are tuned to the frequencies of finding and =pronouns.Possessive= nerves coil around pistol grips." />
+    <part Name="Description" Short="Well-traveled dust covers =pronouns.possessive= cloak and hat. =pronouns.Possessive= ears are tuned to the frequencies of finding and =pronouns.Possessive= nerves coil around pistol grips." />
     <property Name="Role" Value="Skirmisher" />
     <skill Name="Acrobatics_Dodge" />
     <skill Name="Tinkering" />
