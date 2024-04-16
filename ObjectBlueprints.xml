@@ -82,7 +82,8 @@
   </object>
 
   <object Name="LABYRINTHINETRAIL_HereticMask" Inherits="BaseMask">
-    <part Name="Armor" AV="0" DV="1" Ego="1" />
+    <part Name="Armor" AV="0" DV="1" Ego="2" />
+    <part Name="Commerce" Value="5000" />
     <part Name="Unreplicable" />
     <part Name="Physics" Weight="1" />
     <part Name="LABYRINTHINETRAIL_CollapseHideaway" />
@@ -95,7 +96,7 @@
 
   <object Name="LABYRINTHINETRAIL_BloomingFace" Inherits="LABYRINTHINETRAIL_HereticMask">
     <part Name="Render" DisplayName="{{blooming|Blooming}} Face" RenderString="]" Tile="Items/BloomingFace.png" ColorString="&amp;K" DetailColor="M" />
-    <part Name="Description" Short="Agate chips contour a starless sleeping visage. From behind the empty eyes coil a rose red braid of garnets that races up the mask and towards the crown of the mind. There, the stem blooms into an ament tower of florets." />
+    <part Name="Description" Short="Agate chips contour a starless sleeping visage. From behind the empty eyes coils a rose red braid of garnets that races up the mask and towards the crown of the mind. There, the stem blooms into an ament tower of florets." />
     <part Name="LABYRINTHINETRAIL_ModImprovedBurgeoning" Tier="6" />
   </object>
 
@@ -118,10 +119,11 @@
   </object>
 
   <object Name="LABYRINTHINETRAIL_TreasureHunterCorpse" Inherits="Corpse">
-    <part Name="Render" RenderLayer="6" DisplayName="{{Y|human remains}}" ColorString="&amp;Y" DetailColor="y" TileColor="&amp;Y" />
+    <part Name="Render" RenderLayer="6" DisplayName="{{Y|skeletonized remains}}" ColorString="&amp;Y" DetailColor="y" TileColor="&amp;Y" />
     <tag Name="NoSparkingQuest" />
+    <part Name="Food" Message="Crunchy!" />
     <part Name="LABYRINTHINETRAIL_TreasureHunterCorpseLoot" />
-    <part Name="Description" Short="A skeletal shape protrudes from the sludge." />
+    <part Name="Description" Short="A skeletal frame protrudes from the sludge." />
     <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
     <tag Name="NoClear" />
   </object>
