@@ -16,7 +16,8 @@ namespace XRL.World.Parts
     private List<string> MusicNoteTextStrings = new List<string>{ "&R!", "&r!", "&R\r", "&r\u000E" };
 
     public bool GaveReward = false;
-		public string Sound = "completion";
+    public string ColderSound = "completion";
+    public string WarmerSound = "startup";
     public string TargetZoneState = "";
     public string TargetCellState = "";
     public int TargetZoneX = -1;
@@ -39,13 +40,35 @@ namespace XRL.World.Parts
 
     public int LastDist = -1;
 
-    public int Coldest = 25000;
-    public int Colder = 5000;
-    public int Cold = 1000;
-    public int Mild = 250;
-    public int Hot = 50;
-    public int Hotter = 10;
-    public int Hottest = 5;
+    private const int UNKNOWNID = 0, COLDESTID = 1, COLDERID = 2, COLDID = 3,
+      MILDID = 4, HOTID = 5, HOTTERID = 6, HOTTESTID = 7, FOUNDITID = 8 ;
+
+    public int Coldest = 25000, Colder = 5000, Cold = 1000, Mild = 250, Hot = 50,
+      Hotter = 10, Hottest = 5;
+
+    public Dictionary<int, string> DistIDToReportMap = new Dictionary<int, string>{
+      { UNKNOWNID, " wavering in volume." },
+      { COLDESTID, " almost silent." },
+      { COLDERID, " a whisper." },
+      { COLDID, " quiet." },
+      { MILDID, " a steady tone." },
+      { HOTID, " loud." },
+      { HOTTERID, " piercing." },
+      { HOTTESTID,  " booming." },
+      { FOUNDITID, " a triumphant blast." },
+    };
+
+    public Dictionary<int, float> DistIDToVolumeMap = new Dictionary<int, float>{
+      { UNKNOWNID, 0.0f },
+      { COLDESTID, 0.2f },
+      { COLDERID, 0.3f },
+      { COLDID, 0.4f },
+      { MILDID, 0.5f },
+      { HOTID, 0.6f },
+      { HOTTERID, 0.7f },
+      { HOTTESTID, 0.8f },
+      { FOUNDITID, 1.0f },
+    };
 
 		public LABYRINTHINETRAIL_FindingFork()
 		{
@@ -85,8 +108,6 @@ namespace XRL.World.Parts
       )
       {
         E.Actor.UseEnergy(1000, "Item Finding Fork");
-				if (!string.IsNullOrEmpty(this.Sound))
-          E.Actor.PlayWorldSound(this.Sound);
       }
       return base.HandleEvent(E);
     }
@@ -118,33 +139,37 @@ namespace XRL.World.Parts
       {
         E.RequestInterfaceExit();
 				E.Actor.UseEnergy(1000, "Item Finding Fork");
-				if (!string.IsNullOrEmpty(this.Sound))
-          E.Actor.PlayWorldSound(this.Sound);
       }
 			return base.HandleEvent(E);
 		}
 
+    public int GetDistID( int CurrentDist )
+    {
+      if( CurrentDist >= Coldest )
+        return COLDESTID;
+      else if( CurrentDist < Coldest && CurrentDist >= Colder )
+        return COLDERID;
+      else if( CurrentDist < Colder && CurrentDist >= Cold )
+        return COLDID;
+      else if( CurrentDist < Cold && CurrentDist >= Mild )
+        return MILDID;
+      else if( CurrentDist < Mild && CurrentDist >= Hot )
+        return HOTID;
+      else if( CurrentDist < Hot && CurrentDist >= Hotter )
+        return HOTTERID;
+      else if( CurrentDist < Hotter && CurrentDist >= Hottest )
+        return HOTTESTID;
+      else if( CurrentDist < Hottest )
+        return FOUNDITID;
+      else
+        return UNKNOWNID;
+    }
+
     public string GetDistReportString( int CurrentDist )
     {
       string returnString = this.ParentObject.The + this.ParentObject.ShortDisplayName + this.ParentObject.GetVerb("hum") + ". It is";
-      if( CurrentDist >= Coldest )
-        returnString += " almost silent.";
-      else if( CurrentDist < Coldest && CurrentDist >= Colder )
-        returnString += " a whisper.";
-      else if( CurrentDist < Colder && CurrentDist >= Cold )
-        returnString += " quiet.";
-      else if( CurrentDist < Cold && CurrentDist >= Mild )
-        returnString += " a steady tone.";
-      else if( CurrentDist < Mild && CurrentDist >= Hot )
-        returnString += " loud.";
-      else if( CurrentDist < Hot && CurrentDist >= Hotter )
-        returnString += " piercing.";
-      else if( CurrentDist < Hotter && CurrentDist >= Hottest )
-        returnString += " booming.";
-      else if( CurrentDist < Hottest )
-        returnString += " a triumphant blast.";
-      else
-        returnString += " wavering in volume.";
+
+      returnString += DistIDToReportMap[ GetDistID( CurrentDist ) ];
 
       if( this.LastDist < CurrentDist )
         returnString += " It is quieter than last time.";
@@ -209,10 +234,17 @@ namespace XRL.World.Parts
           SuccessMessage =  this.ParentObject.The + this.ParentObject.ShortDisplayName + this.ParentObject.GetVerb("quiver") + " and attunes to " + Grammar.MakePossessive( this.ParentObject.It ) + " partner's signal.";
         else
           SuccessMessage = this.GetDistReportString( currentDist );
-        this.LastDist = currentDist;
         // if (!string.IsNullOrEmpty(SuccessMessage) && this.IsPlayer())
         Popup.Show(SuccessMessage);
         this.PingSoundwave( currentDist );
+
+        string SoundToUse = null;
+        if( this.LastDist > currentDist )
+          SoundToUse = this.WarmerSound;
+        else
+          SoundToUse = this.ColderSound;
+        XRL.Messages.MessageQueue.AddPlayerMessage( SoundToUse );
+        this.ParentObject.PlayWorldSound(SoundToUse, Volume:DistIDToVolumeMap[ GetDistID( currentDist ) ] );
 
         if (currentDist < Hottest)
         {
@@ -241,6 +273,8 @@ namespace XRL.World.Parts
               Popup.Show("The fork's tines probe the air and touch an unseen firmness, but its home is now vacant.");
           }
         }
+
+        this.LastDist = currentDist;
 
 				return true;
 			}
