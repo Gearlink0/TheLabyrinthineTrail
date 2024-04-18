@@ -1,0 +1,8 @@
+<activatedabilities>
+	<ability Command="LABYRINTHINETRAIL_ActivateFindingFork">
+		<description>
+			<p>You check how close you are to the fork's home.</p>
+		</description>
+		<UITile Tile="Items/PingIcon.png" Foreground="y" Detail="Y" />
+  </ability>
+</activatedabilities>

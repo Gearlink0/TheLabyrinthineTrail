@@ -29,12 +29,8 @@ namespace XRL.World.Parts
     public string RewardBlueprint = "LABYRINTHINETRAIL_SubdimensionalCask";
     public bool GoesToHideaway = false;
 
-    public string ActivatedAbilityName = "Ping";
-    public string ActivatedAbilityCommandNamePrefix = "ActivateFindingFork";
-    [FieldSaveVersion(236)]
-    public string ActivatedAbilityClass;
-    [FieldSaveVersion(236)]
-    public string ActivatedAbilityIcon = "û";
+    public string ActivatedAbilityName = "ping";
+    public string ActivatedAbilityCommandName = "LABYRINTHINETRAIL_ActivateFindingFork";
     [FieldSaveVersion(236)]
     public Guid ActivatedAbilityID;
 
@@ -102,7 +98,7 @@ namespace XRL.World.Parts
     public override bool HandleEvent(CommandEvent E)
     {
       if (
-        E.Command == this.GetActivatedAbilityCommandName()
+        E.Command == this.ActivatedAbilityCommandName
         && E.Actor == this.GetActivePartFirstSubject()
         && AttemptPing( E )
       )
@@ -114,14 +110,18 @@ namespace XRL.World.Parts
 
     public override bool HandleEvent(EquippedEvent E)
     {
-      E.Actor.RegisterPartEvent((IPart) this, this.GetActivatedAbilityCommandName());
-      this.SetUpActivatedAbility(E.Actor);
+      E.Actor.RegisterPartEvent((IPart) this, this.ActivatedAbilityCommandName);
+      this.ActivatedAbilityID = E.Actor.AddActivatedAbility( this.ActivatedAbilityName, this.ActivatedAbilityCommandName, "Items");
+      // Add activated ability to AllowedOnWorld map.
+      // TODO: Replace this with official interface if/when that gets added.
+      if (!AbilityManager.WorldMapAllowed.Contains(this.ActivatedAbilityCommandName))
+        AbilityManager.WorldMapAllowed.Add(this.ActivatedAbilityCommandName);
       return base.HandleEvent(E);
     }
 
     public override bool HandleEvent(UnequippedEvent E)
     {
-      E.Actor.UnregisterPartEvent((IPart) this, this.GetActivatedAbilityCommandName());
+      E.Actor.UnregisterPartEvent((IPart) this, this.ActivatedAbilityCommandName);
       E.Actor.RemoveActivatedAbility(ref this.ActivatedAbilityID);
       return base.HandleEvent(E);
     }
@@ -129,13 +129,13 @@ namespace XRL.World.Parts
 		public override bool HandleEvent(GetInventoryActionsEvent E)
 		{
 			if ( this.IsObjectActivePartSubject(IComponent<GameObject>.ThePlayer) )
-        E.AddAction("Activate", "ping", "LabyrinthineTrail_ActivateFindingFork", Key: 'p', Default: 100);
+        E.AddAction("Activate", "ping", "LABYRINTHINETRAIL_ActivateFindingFork", Key: 'p', Default: 100);
 			return base.HandleEvent(E);
 		}
 
 		public override bool HandleEvent(InventoryActionEvent E)
 		{
-			if (E.Command == "LabyrinthineTrail_ActivateFindingFork" && AttemptPing( E ) )
+			if (E.Command == "LABYRINTHINETRAIL_ActivateFindingFork" && AttemptPing( E ) )
       {
         E.RequestInterfaceExit();
 				E.Actor.UseEnergy(1000, "Item Finding Fork");
@@ -231,7 +231,7 @@ namespace XRL.World.Parts
 
         string SuccessMessage = "The fork pings";
         if( this.LastDist < 0 )
-          SuccessMessage =  this.ParentObject.The + this.ParentObject.ShortDisplayName + this.ParentObject.GetVerb("quiver") + " and attunes to " + Grammar.MakePossessive( this.ParentObject.It ) + " partner's signal.";
+          SuccessMessage =  this.ParentObject.The + this.ParentObject.ShortDisplayName + this.ParentObject.GetVerb("quiver") + " and attunes to " + Grammar.MakePossessive( this.ParentObject.It ) + " home's signal.";
         else
           SuccessMessage = this.GetDistReportString( currentDist );
         // if (!string.IsNullOrEmpty(SuccessMessage) && this.IsPlayer())
@@ -451,43 +451,5 @@ namespace XRL.World.Parts
       }
     }
 
-    public void SetUpActivatedAbility(GameObject Who = null)
-    {
-      if (Who == null)
-        Who = this.GetActivePartFirstSubject();
-      if (Who == null)
-        return;
-      if (this.ActivatedAbilityID == Guid.Empty)
-      {
-        string commandName = this.GetActivatedAbilityCommandName();
-        this.ActivatedAbilityID = Who.AddActivatedAbility(
-          this.ActivatedAbilityName,
-          commandName,
-          this.ActivatedAbilityClass ?? (Who == this.ParentObject ? "Maneuvers" : "Items"),
-          Icon: this.ActivatedAbilityIcon
-        );
-        // Add activated ability to AllowedOnWorld map.
-        // TODO: Replace this with official interface if/when that gets added.
-        if (!AbilityManager.WorldMapAllowed.Contains(commandName))
-        {
-          AbilityManager.WorldMapAllowed.Add(commandName);
-        }
-      }
-      else
-        this.SyncActivatedAbilityName(Who);
-    }
-
-    public void SyncActivatedAbilityName(GameObject Who = null)
-    {
-      if (this.ActivatedAbilityID == Guid.Empty)
-        return;
-      if (Who == null)
-        Who = this.GetActivePartFirstSubject();
-      if (Who == null)
-        return;
-      Who.SetActivatedAbilityDisplayName(this.ActivatedAbilityID, this.ActivatedAbilityName);
-    }
-
-    public string GetActivatedAbilityCommandName() => this.ActivatedAbilityCommandNamePrefix + this.ParentObject.ID;
   }
 }
