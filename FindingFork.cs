@@ -91,7 +91,7 @@ namespace XRL.World.Parts
         this.TargetZone = this.GenerateTargetZone();
 
       if( this.TargetCell == null )
-        this.TargetCell = GenerateTargetCell();
+        this.TargetCell = this.GenerateTargetCell();
       return base.HandleEvent(E);
     }
 
@@ -354,36 +354,71 @@ namespace XRL.World.Parts
 
     public string GenerateTargetZone()
     {
+      string zoneID = null;
       if ( !this.TargetZoneState.IsNullOrEmpty() )
-        return XRLCore.Core.Game.GetStringGameState( this.TargetZoneState );
+        zoneID = XRLCore.Core.Game.GetStringGameState( this.TargetZoneState );
+        if(The.ZoneManager.GetZone(zoneID) == null) {
+          UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneState did not contain a valid Zone ID." );
+          zoneID = this.GenerateRandomZone();
+        }
       else if (TargetZoneX >= 0 && TargetZoneY >= 0)
-        return Zone.XYToID(this.World, TargetZoneX, TargetZoneY, 10);
+        zoneID = Zone.XYToID(this.World, TargetZoneX, TargetZoneY, 10);
+        if(The.ZoneManager.GetZone(zoneID) == null) {
+          UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneX and TargetCellY did not result in a valid Zone ID." );
+          zoneID = this.GenerateRandomZone();
+        }
       else {
-        // TODO: Make this configurable and find a better way to get the dimensions
-        // of the world
-        int RandX = Stat.Random( 0, 80 * 3 );
-        int RandY = Stat.Random( 0, 25 * 3 );
-
-        XRL.Messages.MessageQueue.AddPlayerMessage( RandX.ToString() );
-        XRL.Messages.MessageQueue.AddPlayerMessage( RandY.ToString() );
-
-        return Zone.XYToID(
-          this.World,
-          RandX,
-          RandY,
-          10
-        );
+        zoneID = this.GenerateRandomZone();
       }
+      return zoneID;
+    }
+
+    public string GenerateRandomZone()
+    {
+      // TODO: Make this configurable and find a better way to get the dimensions
+      // of the world
+      int RandX = Stat.Random( 0, 80 * 3 );
+      int RandY = Stat.Random( 0, 25 * 3 );
+
+      XRL.Messages.MessageQueue.AddPlayerMessage( RandX.ToString() );
+      XRL.Messages.MessageQueue.AddPlayerMessage( RandY.ToString() );
+
+      return Zone.XYToID(
+        this.World,
+        RandX,
+        RandY,
+        10
+      );
     }
 
     public Cell GenerateTargetCell()
     {
-      if ( !this.TargetCellState.IsNullOrEmpty() )
-        return Cell.FromAddress( XRLCore.Core.Game.GetStringGameState( this.TargetCellState ) );
-      else if (TargetCellX >= 0 && TargetCellY >= 0)
-        return The.ZoneManager.GetZone(this.TargetZone).GetCell(TargetCellX, TargetCellY);
-      if(The.ZoneManager.GetZone(this.TargetZone) == null)
-        MetricsManager.LogInfo("noot noot got no zone");
+      Cell cell = null;
+      if ( !this.TargetCellState.IsNullOrEmpty() ) {
+        cell = Cell.FromAddress( XRLCore.Core.Game.GetStringGameState( this.TargetCellState ) );
+        if(cell == null) {
+          UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetCellState did not contain a valid Cell address." );
+          cell = this.GenerateRandomCell();
+        }
+      }
+      else if (TargetCellX >= 0 && TargetCellY >= 0 && !(The.ZoneManager.GetZone(this.TargetZone) == null)) {
+        cell = The.ZoneManager.GetZone(this.TargetZone).GetCell(TargetCellX, TargetCellY);
+        if(cell == null) {
+          UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetZoneX and TargetCellY did not result in a valid Cell." );
+          cell = this.GenerateRandomCell();
+        }
+      }
+      else
+        cell = this.GenerateRandomCell();
+      return cell;
+    }
+
+    public Cell GenerateRandomCell()
+    {
+      if( The.ZoneManager.GetZone(this.TargetZone) == null ){
+        UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: No zone prior to generating cell." );
+        this.TargetZone = this.GenerateTargetZone();
+      }
       return The.ZoneManager.GetZone(this.TargetZone).GetEmptyReachableCells().RemoveRandomElement<Cell>();
     }
 
