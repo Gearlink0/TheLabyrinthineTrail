@@ -143,7 +143,7 @@
     <part Name="Brain" Factions="Prey-100" />
     <stat Name="Agility" Boost="1" />
     <part Name="LABYRINTHINETRAIL_RivalCritical" />
-    <part Name="Description" Short="Well-traveled dust covers =pronouns.possessive= cloak and hat. =pronouns.Possessive= ears are tuned to the frequencies of finding and =pronouns.Possessive= nerves coil around pistol grips." />
+    <part Name="Description" Short="Well-traveled dust covers =pronouns.possessive= cloak and hat. =pronouns.Possessive= ears are tuned to the frequencies of finding and =pronouns.possessive= nerves coil around pistol grips." />
     <property Name="Role" Value="Skirmisher" />
     <skill Name="Acrobatics_Dodge" />
     <skill Name="Tinkering" />
