@@ -86,8 +86,9 @@ namespace XRL
 
         placedHunters |= LABYRINTHINETRAIL_RivalHunterSystem.PlaceHunter(zone, gameObject);
       }
-      if( placedHunters )
-        Popup.Show("{{c|You hear the sharp ping of another fork. Someone else is here.}}");
+      // Unsure if I want to alert players to the arival of the hunters.
+      // if( placedHunters )
+      //   Popup.Show("{{c|You hear the sharp ping of another fork. Someone else is here.}}");
     }
 
     public static bool PlaceHunter( Zone Zone, XRL.World.GameObject Hunter )
@@ -115,6 +116,7 @@ namespace XRL
 
     public static int GetNumHunters(int level)
     {
+      // Have one hunter for every five levels above level 10 the player is.
       return ( level - 10 ) / 5;
     }
 
