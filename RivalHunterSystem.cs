@@ -27,43 +27,25 @@ namespace XRL
 
     public void CheckHunters(Zone zone)
     {
-      XRL.Messages.MessageQueue.AddPlayerMessage( "CheckHunters ran" );
       if (zone.IsWorldMap())
-      {
-        XRL.Messages.MessageQueue.AddPlayerMessage( "World map" );
         return;
-      }
       GameObject player = The.Player;
       // Make sure the player actually has a finding fork for the rivals to track
       if ( !player.HasCarriedItemWithTag("LABYRINTHINETRAIL_AttractsRivalHunters") )
-      {
-        XRL.Messages.MessageQueue.AddPlayerMessage( "Player has no fork" );
         return;
-      }
       if (this.Visited.ContainsKey(zone.ZoneID))
-      {
-        XRL.Messages.MessageQueue.AddPlayerMessage( "Zone visited" );
         return;
-      }
       this.Visited.Add(zone.ZoneID, true);
       int ambushChance;
       /* Ambush chance is a property currently only the interiors of the mechs
       seem to use so this will basically always not skip the river hunter spawn. */
       if (The.ZoneManager.TryGetZoneProperty<int>(zone.ZoneID, "AmbushChance", out ambushChance) && !ambushChance.in100())
-      {
-        XRL.Messages.MessageQueue.AddPlayerMessage( "AmbushChance happened" );
         return;
-      }
       int numHunters = LABYRINTHINETRAIL_RivalHunterSystem.GetNumHunters(player.Statistics["Level"].Value);
       if (numHunters <= 0)
-      {
-        XRL.Messages.MessageQueue.AddPlayerMessage( "Player level too low; 0 rivals attracted" );
         return;
-      }
       if (chance.in100())
         LABYRINTHINETRAIL_RivalHunterSystem.CreateHunters(numHunters, zone);
-      else
-        XRL.Messages.MessageQueue.AddPlayerMessage( "Missed chance.in100 where chance is " + chance.ToString() );
     }
 
     public static void CreateHunters(int numHunters, Zone zone)

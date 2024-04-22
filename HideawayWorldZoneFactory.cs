@@ -7,7 +7,7 @@ namespace XRL.World.ZoneFactories
   {
     public override Zone BuildZone(ZoneRequest Request)
     {
-			MetricsManager.LogInfo("Building hideaway");
+			MetricsManager.LogInfo("LABYRINTHINETRAIL_HideawayWorldZoneFactory building hideaway");
       if (Request.IsWorldZone)
       {
         Zone zone = new Zone(80, 25);

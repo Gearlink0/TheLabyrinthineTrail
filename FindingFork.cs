@@ -182,13 +182,11 @@ namespace XRL.World.Parts
 
 		public bool AttemptPing(IEvent FromEvent = null)
 		{
-      XRL.Messages.MessageQueue.AddPlayerMessage( this.TargetZone );
 
 			int num = this.ParentObject.QueryCharge();
 			ActivePartStatus activePartStatus = this.GetActivePartStatus(true);
 			if (activePartStatus == ActivePartStatus.Operational)
 			{
-				XRL.Messages.MessageQueue.AddPlayerMessage( "Ping with finding fork" );
         GameObject Subject = this.GetActivePartFirstSubject();
         Cell currentCell = Subject.CurrentCell;
         if ( currentCell.ParentZone.IsWorldMap() )
@@ -227,14 +225,12 @@ namespace XRL.World.Parts
         }
 
         int currentDist = currentCell.PathDistanceTo( this.TargetCell );
-        XRL.Messages.MessageQueue.AddPlayerMessage( currentDist.ToString() );
 
         string SuccessMessage = "The fork pings";
         if( this.LastDist < 0 )
           SuccessMessage =  this.ParentObject.The + this.ParentObject.ShortDisplayName + this.ParentObject.GetVerb("quiver") + " and attunes to " + Grammar.MakePossessive( this.ParentObject.It ) + " home's signal.";
         else
           SuccessMessage = this.GetDistReportString( currentDist );
-        // if (!string.IsNullOrEmpty(SuccessMessage) && this.IsPlayer())
         Popup.Show(SuccessMessage);
         this.PingSoundwave( currentDist );
 
@@ -243,7 +239,6 @@ namespace XRL.World.Parts
           SoundToUse = this.WarmerSound;
         else
           SoundToUse = this.ColderSound;
-        XRL.Messages.MessageQueue.AddPlayerMessage( SoundToUse );
         this.ParentObject.PlayWorldSound(SoundToUse, Volume:DistIDToVolumeMap[ GetDistID( currentDist ) ] );
 
         if (currentDist < Hottest)
@@ -278,7 +273,6 @@ namespace XRL.World.Parts
 
 				return true;
 			}
-			XRL.Messages.MessageQueue.AddPlayerMessage( GetStatusSummary( activePartStatus ) );
 			switch (activePartStatus)
       {
 				case ActivePartStatus.Broken:
@@ -355,18 +349,20 @@ namespace XRL.World.Parts
     public string GenerateTargetZone()
     {
       string zoneID = null;
-      if ( !this.TargetZoneState.IsNullOrEmpty() )
+      if ( !this.TargetZoneState.IsNullOrEmpty() ) {
         zoneID = XRLCore.Core.Game.GetStringGameState( this.TargetZoneState );
         if(The.ZoneManager.GetZone(zoneID) == null) {
-          UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneState did not contain a valid Zone ID." );
+          MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneState did not contain a valid Zone ID." );
           zoneID = this.GenerateRandomZone();
         }
-      else if (TargetZoneX >= 0 && TargetZoneY >= 0)
+      }
+      else if (TargetZoneX >= 0 && TargetZoneY >= 0) {
         zoneID = Zone.XYToID(this.World, TargetZoneX, TargetZoneY, 10);
         if(The.ZoneManager.GetZone(zoneID) == null) {
-          UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneX and TargetCellY did not result in a valid Zone ID." );
+          MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneX and TargetCellY did not result in a valid Zone ID." );
           zoneID = this.GenerateRandomZone();
         }
+      }
       else {
         zoneID = this.GenerateRandomZone();
       }
@@ -379,9 +375,6 @@ namespace XRL.World.Parts
       // of the world
       int RandX = Stat.Random( 0, 80 * 3 );
       int RandY = Stat.Random( 0, 25 * 3 );
-
-      XRL.Messages.MessageQueue.AddPlayerMessage( RandX.ToString() );
-      XRL.Messages.MessageQueue.AddPlayerMessage( RandY.ToString() );
 
       return Zone.XYToID(
         this.World,
@@ -397,14 +390,14 @@ namespace XRL.World.Parts
       if ( !this.TargetCellState.IsNullOrEmpty() ) {
         cell = Cell.FromAddress( XRLCore.Core.Game.GetStringGameState( this.TargetCellState ) );
         if(cell == null) {
-          UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetCellState did not contain a valid Cell address." );
+          MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetCellState did not contain a valid Cell address." );
           cell = this.GenerateRandomCell();
         }
       }
       else if (TargetCellX >= 0 && TargetCellY >= 0 && !(The.ZoneManager.GetZone(this.TargetZone) == null)) {
         cell = The.ZoneManager.GetZone(this.TargetZone).GetCell(TargetCellX, TargetCellY);
         if(cell == null) {
-          UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetZoneX and TargetCellY did not result in a valid Cell." );
+          MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetZoneX and TargetCellY did not result in a valid Cell." );
           cell = this.GenerateRandomCell();
         }
       }
@@ -416,7 +409,7 @@ namespace XRL.World.Parts
     public Cell GenerateRandomCell()
     {
       if( The.ZoneManager.GetZone(this.TargetZone) == null ){
-        UnityEngine.Debug.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: No zone prior to generating cell." );
+        MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: No zone prior to generating cell." );
         this.TargetZone = this.GenerateTargetZone();
       }
       return The.ZoneManager.GetZone(this.TargetZone).GetEmptyReachableCells().RemoveRandomElement<Cell>();
