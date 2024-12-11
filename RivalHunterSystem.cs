@@ -19,11 +19,17 @@ namespace XRL
     [NonSerialized]
     public Dictionary<string, bool> Visited = new Dictionary<string, bool>();
 
-    public override void ZoneActivated(Zone zone) => this.CheckHunters(zone);
+    public override void Register(XRLGame Game, IEventRegistrar Registrar) => Registrar.Register(ZoneActivatedEvent.ID);
 
-    public override void LoadGame(SerializationReader Reader) => this.Visited = Reader.ReadDictionary<string, bool>();
+    public override void Read(SerializationReader Reader) => this.Visited = Reader.ReadDictionary<string, bool>();
 
-    public override void SaveGame(SerializationWriter Writer) => Writer.Write<string, bool>(this.Visited);
+    public override void Write(SerializationWriter Writer) => Writer.Write<string, bool>(this.Visited);
+
+    public override bool HandleEvent(ZoneActivatedEvent E)
+    {
+      this.CheckHunters(E.Zone);
+      return base.HandleEvent(E);
+    }
 
     public void CheckHunters(Zone zone)
     {
