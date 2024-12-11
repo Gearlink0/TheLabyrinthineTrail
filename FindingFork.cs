@@ -259,10 +259,10 @@ namespace XRL.World.Parts
               Predicate<GameObject> pred = item => item.HasTag("LABYRINTHINETRAIL_AttacksForksUsers");
               foreach ( GameObject rival in currentCell.ParentZone.FindObjects( pred ) )
               {
-                rival.pBrain.Hostile = true;
-                rival.pBrain.Hibernating = false;
-                rival.pBrain.SetFeeling(The.Player, -100);
-                rival.pBrain.PushGoal((GoalHandler) new Kill(The.Player));
+                rival.Brain.Allegiance.Hostile = true;
+                rival.Brain.Hibernating = false;
+                rival.Brain.AddOpinion<LABYRINTHINETRAIL_OpinionForkHunt>(The.Player);
+                rival.Brain.PushGoal((GoalHandler) new Kill(The.Player));
               }
             }
             else

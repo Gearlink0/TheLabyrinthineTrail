@@ -57,10 +57,10 @@ namespace XRL
       for (int index = 1; index <= numHunters; ++index)
       {
         GameObject gameObject = GameObject.Create("LABYRINTHINETRAIL_BaseRivalHunter");
-        gameObject.pBrain.Hostile = true;
-        gameObject.pBrain.Hibernating = false;
-        gameObject.pBrain.SetFeeling(player, -100);
-        gameObject.pBrain.PushGoal((GoalHandler) new Kill(player));
+        gameObject.Brain.Allegiance.Hostile = true;
+        gameObject.Brain.Hibernating = false;
+        gameObject.Brain.AddOpinion<LABYRINTHINETRAIL_OpinionForkHunt>(The.Player);
+        gameObject.Brain.PushGoal((GoalHandler) new Kill(player));
 
         gameObject.AwardXP(player.Stat("XP"));
 
