@@ -111,11 +111,12 @@ namespace XRL.World.Parts
     public override bool HandleEvent(EquippedEvent E)
     {
       E.Actor.RegisterPartEvent((IPart) this, this.ActivatedAbilityCommandName);
-      this.ActivatedAbilityID = E.Actor.AddActivatedAbility( this.ActivatedAbilityName, this.ActivatedAbilityCommandName, "Items");
-      // Add activated ability to AllowedOnWorld map.
-      // TODO: Replace this with official interface if/when that gets added.
-      if (!AbilityManager.WorldMapAllowed.Contains(this.ActivatedAbilityCommandName))
-        AbilityManager.WorldMapAllowed.Add(this.ActivatedAbilityCommandName);
+      this.ActivatedAbilityID = E.Actor.AddActivatedAbility(
+        Name: this.ActivatedAbilityName,
+        Command: this.ActivatedAbilityCommandName,
+        Class: "Items",
+        IsWorldMapUsable: true
+      );
       return base.HandleEvent(E);
     }
 
