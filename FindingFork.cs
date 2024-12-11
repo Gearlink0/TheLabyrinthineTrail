@@ -229,7 +229,7 @@ namespace XRL.World.Parts
 
         string SuccessMessage = "The fork pings";
         if( this.LastDist < 0 )
-          SuccessMessage =  this.ParentObject.The + this.ParentObject.ShortDisplayName + this.ParentObject.GetVerb("quiver") + " and attunes to " + Grammar.MakePossessive( this.ParentObject.It ) + " home's signal.";
+          SuccessMessage =  this.ParentObject.The + this.ParentObject.ShortDisplayName + this.ParentObject.GetVerb("quiver") + " and attunes to " + Grammar.MakePossessive( this.ParentObject.it ) + " home's signal.";
         else
           SuccessMessage = this.GetDistReportString( currentDist );
         Popup.Show(SuccessMessage);
