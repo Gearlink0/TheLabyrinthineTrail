@@ -340,7 +340,7 @@ namespace XRL.World.Parts
       else
       {
         XRLCore.Core.Game.SetStringGameState("LABYRINTHINETRAIL_EnteredHideaway_CellAddress", Object.CurrentCell.GetAddress());
-        Object.pPhysics.PlayWorldSound("teleport_long", 1f);
+        Object.Physics.PlayWorldSound("teleport_long", 1f);
         SoundManager.PlayMusic("Clam Dimension", CrossfadeDuration: 20f);
         Popup.Show("The fork's tines probe the air and catch on an unseen firmness. A seam in the world tears open and you fall through!");
         GiantClamProperties.Teleport(Object, targetCell, 'O');
