@@ -11,12 +11,12 @@ namespace XRL.World.Parts
 
     public override bool WantEvent(int ID, int cascade) => base.WantEvent(ID, cascade);
 
-    public override void Register(GameObject Object)
+    public override void Register(GameObject Object, IEventRegistrar Registrar)
     {
-      Object.RegisterPartEvent((IPart) this, "BeginBeingTaken");
-      Object.RegisterPartEvent((IPart) this, "Taken");
-      Object.RegisterPartEvent((IPart) this, "Equipped");
-    	base.Register(Object);
+      Registrar.Register("BeginBeingTaken");
+      Registrar.Register("Taken");
+      Registrar.Register("Equipped");
+      base.Register(Object, Registrar);
     }
 
 		public override bool FireEvent(Event E)

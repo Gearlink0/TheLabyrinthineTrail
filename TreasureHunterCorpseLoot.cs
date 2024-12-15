@@ -9,10 +9,10 @@ namespace XRL.World.Parts
 
     public override bool SameAs(IPart p) => false;
 
-    public override void Register(GameObject Object)
+    public override void Register(GameObject Object, IEventRegistrar Registrar)
     {
-      Object.RegisterPartEvent((IPart) this, "EnteredCell");
-      base.Register(Object);
+      Registrar.Register("EnteredCell");
+      base.Register(Object, Registrar);
     }
 
     public override bool FireEvent(Event E)

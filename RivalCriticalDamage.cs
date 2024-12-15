@@ -15,10 +15,10 @@ namespace XRL.World.Parts
       return base.HandleEvent(E);
     }
 
-    public override void Register(GameObject Object)
+    public override void Register(GameObject Object, IEventRegistrar Registrar)
     {
-      Object.RegisterPartEvent((IPart) this, "WeaponMissileWeaponHit");
-      base.Register(Object);
+      Registrar.Register("WeaponMissileWeaponHit");
+      base.Register(Object, Registrar);
     }
 
     public override bool FireEvent(Event E)
