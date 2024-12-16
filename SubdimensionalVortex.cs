@@ -72,17 +72,15 @@ namespace XRL.World.Parts
 
     public override bool HandleEvent(EnteredCellEvent E)
     {
-      if (!E.Cell.IsGraveyard())
+      foreach (GameObject GO in E.Cell.GetObjectsWithPartReadonly("Render"))
       {
-        foreach (GameObject GO in E.Cell.GetObjectsWithPartReadonly("Render"))
-        {
-          if (
-            this.ParentObject.IsValid()
-            && !this.ParentObject.IsInGraveyard()
-            && this.ParentObject.CurrentCell == E.Cell
-          )
-            this.ApplyVortex(GO);
-        }
+        if (
+          this.ParentObject.IsValid()
+          && this.ParentObject.CurrentCell == E.Cell
+        )
+          this.ApplyVortex(GO);
+        else
+          break;
       }
       return base.HandleEvent(E);
     }
@@ -97,8 +95,7 @@ namespace XRL.World.Parts
 
     public override bool HandleEvent(ObjectEnteredCellEvent E)
     {
-      if (!E.Cell.IsGraveyard())
-        this.ApplyVortex(E.Object);
+      this.ApplyVortex(E.Object);
       return base.HandleEvent(E);
     }
 
@@ -129,7 +126,7 @@ namespace XRL.World.Parts
           IndefiniteObject: true,
           DescribeSubjectDirection: true
         );
-        Location2D location = GO.CurrentCell?.location;
+        Location2D location = GO.CurrentCell?.Location;
         if (location != (Location2D) null)
         {
           if (this.Queue == null)
