@@ -3,7 +3,7 @@
   "loadorder": 1,
   "title": "The Labyrinthine Trail",
   "description": "Occasionally, an adventurer will stumble across a fork, tines sharp and sensitive, that yearns to go home.\n\nAdds finding forks and a small sidequest to the game.",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "author": "Gearlink",
   "tags": "Quest,Balance,Lore",
 	"previewImage": "preview.png"
