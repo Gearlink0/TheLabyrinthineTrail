@@ -33,6 +33,8 @@ namespace XRL
 
     public void CheckHunters(Zone zone)
     {
+      if (zone.ZoneWorld != "JoppaWorld")
+        return;
       if (zone.IsWorldMap())
         return;
       GameObject player = The.Player;
