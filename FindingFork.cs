@@ -28,12 +28,6 @@ namespace XRL.World.Parts
     public Cell TargetCell = null;
     public string RewardBlueprint = "LABYRINTHINETRAIL_SubdimensionalCask";
     public bool GoesToHideaway = false;
-
-    public string ActivatedAbilityName = "ping";
-    public string ActivatedAbilityCommandName = "LABYRINTHINETRAIL_ActivateFindingFork";
-    [FieldSaveVersion(236)]
-    public Guid ActivatedAbilityID;
-
     public int LastDist = -1;
 
     private const int UNKNOWNID = 0, COLDESTID = 1, COLDERID = 2, COLDID = 3,
@@ -78,8 +72,8 @@ namespace XRL.World.Parts
     {
       return base.WantEvent(ID, cascade)
       || ID == ObjectCreatedEvent.ID
+      || ID == AddedToInventoryEvent.ID
       || ID == EquippedEvent.ID
-      || ID == UnequippedEvent.ID
       || ID == CommandEvent.ID
       || ID == GetInventoryActionsEvent.ID
       || ID == InventoryActionEvent.ID;
@@ -97,8 +91,11 @@ namespace XRL.World.Parts
 
     public override bool HandleEvent(CommandEvent E)
     {
+      // TODO: Figure out an appropriate way to avoid multiple equipped forks
+      // all pinging at the same time, OR make the ping message more descriptive
+      // so the player can differentiate which fork is giving which message.
       if (
-        E.Command == this.ActivatedAbilityCommandName
+        E.Command == LABYRINTHINETRAIL_PingAbility.COMMAND_NAME
         && E.Actor == this.GetActivePartFirstSubject()
         && AttemptPing( E )
       )
@@ -108,22 +105,17 @@ namespace XRL.World.Parts
       return base.HandleEvent(E);
     }
 
-    public override bool HandleEvent(EquippedEvent E)
+    public override bool HandleEvent(AddedToInventoryEvent E)
     {
-      E.Actor.RegisterPartEvent((IPart) this, this.ActivatedAbilityCommandName);
-      this.ActivatedAbilityID = E.Actor.AddActivatedAbility(
-        Name: this.ActivatedAbilityName,
-        Command: this.ActivatedAbilityCommandName,
-        Class: "Items",
-        IsWorldMapUsable: true
-      );
+      if (E.Item == this.ParentObject)
+        this.RequirePingAbility(E.Actor);
       return base.HandleEvent(E);
     }
 
-    public override bool HandleEvent(UnequippedEvent E)
+    public override bool HandleEvent(EquippedEvent E)
     {
-      E.Actor.UnregisterPartEvent((IPart) this, this.ActivatedAbilityCommandName);
-      E.Actor.RemoveActivatedAbility(ref this.ActivatedAbilityID);
+      if (E.Item == this.ParentObject)
+        this.RequirePingAbility(E.Actor);
       return base.HandleEvent(E);
     }
 
@@ -478,6 +470,14 @@ namespace XRL.World.Parts
           );
         }
       }
+    }
+
+    public bool RequirePingAbility(GameObject Subject)
+    {
+      if (!GameObject.Validate(ref Subject) || Subject.IsPlayer() && !this.ParentObject.Understood() || !this.IsObjectActivePartSubject(Subject))
+        return false;
+      Subject.RequirePart<LABYRINTHINETRAIL_PingAbility>();
+      return true;
     }
 
   }
