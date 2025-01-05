@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <worlds>
-
-	<world Name="LABYRINTHINETRAIL_Hideaway" ZoneFactory="LABYRINTHINETRAIL_HideawayWorldZoneFactory" DisplayName="Hideaway" Plane="LABYRINTHINETRAIL_Hideaway"></world>
+	<!-- TODO: Replace placeholder CustomClock when user supplied clocks are working -->
+	<world
+		Name="LABYRINTHINETRAIL_Hideaway"
+		ZoneFactory="LABYRINTHINETRAIL_HideawayWorldZoneFactory"
+		DisplayName="Hideaway"
+		Plane="LABYRINTHINETRAIL_Hideaway"
+		CustomClock="time_clam1">
+	</world>
 
 </worlds>
