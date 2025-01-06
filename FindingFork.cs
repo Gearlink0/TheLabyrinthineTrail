@@ -344,15 +344,26 @@ namespace XRL.World.Parts
       string zoneID = null;
       if ( !this.TargetZoneState.IsNullOrEmpty() ) {
         zoneID = XRLCore.Core.Game.GetStringGameState( this.TargetZoneState );
-        if(The.ZoneManager.GetZone(zoneID) == null) {
-          MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneState did not contain a valid Zone ID." );
+        // If a zoneID doesn't correspond to a real zone, the GetZone will
+        // try to build the zone, fail to do so, and then return an empty
+        // placeholder zone with 0 BuildTries. Use this as a sign that something
+        // went wrong.
+        if(The.ZoneManager.GetZone(zoneID).BuildTries == 0) {
+          MetricsManager.LogError(
+            "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneState "
+            + this.TargetZoneState + " had value " + zoneID + " which was not a valid Zone ID."
+          );
           zoneID = this.GenerateRandomZone();
         }
       }
       else if (TargetZoneX >= 0 && TargetZoneY >= 0) {
         zoneID = Zone.XYToID(this.World, TargetZoneX, TargetZoneY, 10);
-        if(The.ZoneManager.GetZone(zoneID) == null) {
-          MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneX and TargetCellY did not result in a valid Zone ID." );
+        if(The.ZoneManager.GetZone(zoneID).BuildTries == 0) {
+          MetricsManager.LogError(
+            "LABYRINTHINETRAIL_FindingFork.GenerateTargetZone: Provided TargetZoneX "
+            + this.TargetZoneX.ToString() + " and TargetZoneY "
+            + this.TargetZoneY.ToString() + " did not result in a valid Cell."
+          );
           zoneID = this.GenerateRandomZone();
         }
       }
@@ -381,16 +392,24 @@ namespace XRL.World.Parts
     {
       Cell cell = null;
       if ( !this.TargetCellState.IsNullOrEmpty() ) {
-        cell = Cell.FromAddress( XRLCore.Core.Game.GetStringGameState( this.TargetCellState ) );
+        string cellAddress = XRLCore.Core.Game.GetStringGameState( this.TargetCellState );
+        cell = Cell.FromAddress( cellAddress );
         if(cell == null) {
-          MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetCellState did not contain a valid Cell address." );
+          MetricsManager.LogError(
+            "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetCellState "
+            + this.TargetCellState + " had value " + cellAddress + " which was not a valid Cell address."
+          );
           cell = this.GenerateRandomCell();
         }
       }
       else if (TargetCellX >= 0 && TargetCellY >= 0 && !(The.ZoneManager.GetZone(this.TargetZone) == null)) {
         cell = The.ZoneManager.GetZone(this.TargetZone).GetCell(TargetCellX, TargetCellY);
         if(cell == null) {
-          MetricsManager.LogError( "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetZoneX and TargetCellY did not result in a valid Cell." );
+          MetricsManager.LogError(
+            "LABYRINTHINETRAIL_FindingFork.GenerateTargetCell: Provided TargetCellX "
+            + this.TargetCellX.ToString() + " and TargetCellY "
+            + this.TargetCellY.ToString() + " did not result in a valid Cell."
+          );
           cell = this.GenerateRandomCell();
         }
       }
